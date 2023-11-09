@@ -1,0 +1,26 @@
+package io.mindspice.okragameserver.game.enums;
+
+public enum ImpactAudio {
+    GENERIC_SWORD,
+    GENERIC_PUNCH,
+    DEATH,
+    MOLTEN_RAIN,
+    FLYING_ARROW,
+    ARROW_IMPACT,
+    JAVLIN_IMPACT,
+    ROCK_IMPACT,
+    SHURIKEN_IMPACT,
+    DAGGER_IMPACT,
+    SWORD_IMPACT,
+    HAMMER_IMPACT,
+    MACE_IMPACT,
+    BOW_SHOT,
+    PLUNDER,
+    INSIGHT,
+    WEAPON_DROP,
+    STONE,
+    CURSE,
+    HEAL,
+    BUFF,
+    CURE,
+}

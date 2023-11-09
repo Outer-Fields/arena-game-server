@@ -1,0 +1,285 @@
+package io.mindspice.okragameserver.game.bot.behavior;
+
+import io.mindspice.okragameserver.game.bot.behavior.core.ActionNode;
+import io.mindspice.okragameserver.game.bot.behavior.core.DecisionNode;
+import io.mindspice.okragameserver.game.bot.behavior.core.Node;
+import io.mindspice.okragameserver.game.bot.behavior.core.RootNode;
+import io.mindspice.okragameserver.game.bot.behavior.logic.Actions;
+import io.mindspice.okragameserver.game.bot.behavior.logic.Decision;
+import io.mindspice.okragameserver.game.bot.behavior.logic.Decisions;
+import io.mindspice.okragameserver.game.bot.state.BotPlayerState;
+import io.mindspice.okragameserver.game.bot.state.TreeFocusState;
+import io.mindspice.okragameserver.game.enums.PawnIndex;
+
+
+public final class BehaviorGraph {
+    private static final BehaviorGraph behaviorGraph = new BehaviorGraph();
+    private final Node root;
+
+    private BehaviorGraph() {
+        root = new RootNode();
+        init();
+    }
+
+    public  void printStructure() {
+        root.printGraph(0);
+    }
+
+    public static BehaviorGraph getInstance() {
+        return behaviorGraph;
+    }
+
+    public void playTurn(BotPlayerState botPlayerState, TreeFocusState focusState, PawnIndex selfIndex) {
+        root.travel(botPlayerState, focusState, selfIndex);
+    }
+
+    public void init() {
+
+        /* Self Confused Branch */
+        root.addAdjacent(pawnConfused);
+        {
+            pawnConfused.addAdjacent(confusedRollsOffSoon);
+            {
+                confusedRollsOffSoon.addAdjacent(doNothing);
+            }
+
+            pawnConfused.addAdjacent(confusedOver67);
+            {
+                confusedOver67.addAdjacent(doNothing);
+            }
+
+            pawnConfused.addAdjacent(confusedOver50);
+            {
+                confusedOver50.addAdjacent(doCure);
+            }
+
+            pawnConfused.addAdjacent(playerHasMortalPawns);
+
+            pawnConfused.addAdjacent(playerCountAndHpLower);
+            {
+                playerCountAndHpLower.addAdjacent(canHealSetFocus);
+                {
+                    canHealSetFocus.addAdjacent(doCure);
+                }
+            }
+
+            pawnConfused.addAdjacent(playerCountAndHpHigher);
+            {
+                playerCountAndHpHigher.addAdjacent(checkAndFocusEnemyMortal);
+                {
+                    checkAndFocusEnemyMortal.addAdjacent(doAttack);
+                }
+            }
+        }
+
+        /* Player Mortal Branch */
+        root.addAdjacent(playerHasMortalPawns);
+        {
+            playerHasMortalPawns.addAdjacent(focusPlayerMortal);
+            {
+                focusPlayerMortal.addAdjacent(doCure);
+            }
+
+            playerHasMortalPawns.addAdjacent(focusEnemyHighestAP);
+            {
+                focusEnemyHighestAP.addAdjacent(doAttack);
+            }
+        }
+
+        /* player Negative Status */
+        root.addAdjacent(playerHasNegativeStatus);
+        {
+            playerHasNegativeStatus.addAdjacent(canCure);
+            {
+                canCure.addAdjacent(doCure);
+            }
+            playerHasNegativeStatus.addAdjacent(focusEnemyHighestAP);
+        }
+
+        /* Enemy Mortal */
+        root.addAdjacent(checkAndFocusEnemyMortal);
+
+        /* Player -50% */
+        root.addAdjacent(player50PctLessHP);
+        {
+            player50PctLessHP.addAdjacent(canHealSetFocus);
+
+            player50PctLessHP.addAdjacent(canBuff50Pct);
+            {
+                canBuff50Pct.addAdjacent(doBuff);
+            }
+
+            final Node fiftyPctChance1 = new DecisionNode("50% chance", new Decision[]{Decisions.chance50Pct});
+            player50PctLessHP.addAdjacent(fiftyPctChance1);
+            {
+                fiftyPctChance1.addAdjacent(canCurse);
+                {
+                    canCurse.addAdjacent(doCurse);
+                }
+            }
+        }
+
+        /* player -30% */
+        root.addAdjacent(player30PctLessHP);
+        {
+            final Node fiftyPctChance2 = new DecisionNode("50% chance", new Decision[]{Decisions.chance50Pct});
+            player30PctLessHP.addAdjacent(fiftyPctChance2);
+            {
+                fiftyPctChance2.addAdjacent(canHealSetFocus);
+            }
+
+            player30PctLessHP.addAdjacent(canBuff50Pct);
+            {
+                canBuff50Pct.addAdjacent(doBuff);
+            }
+
+            final Node fiftyPctChance3 = new DecisionNode("50% chance", new Decision[]{Decisions.chance50Pct});
+            player30PctLessHP.addAdjacent(fiftyPctChance3);
+            {
+                fiftyPctChance3.addAdjacent(canCurse);
+            }
+
+            player30PctLessHP.addAdjacent(focusEnemyHighestAP);
+        }
+
+        /* player equal enemy hp */
+        root.addAdjacent(playerEqualHP);
+        {
+            playerEqualHP.addAdjacent(canCurse);
+            playerEqualHP.addAdjacent(canBuff50Pct);
+            {
+                canBuff50Pct.addAdjacent(doBuff);
+            }
+            playerEqualHP.addAdjacent(focusEnemyHighestAP);
+        }
+
+        /* player +30% */
+        root.addAdjacent(player30PctMoreHP);
+        {
+            final Node fiftyPctChance4 = new DecisionNode("50% chance", new Decision[]{Decisions.chance50Pct});
+            player30PctMoreHP.addAdjacent(fiftyPctChance4);
+            {
+                fiftyPctChance4.addAdjacent(canCurse);
+            }
+
+            player30PctMoreHP.addAdjacent(focusEnemyHighestAP);
+        }
+
+        /* player + 50% */
+        root.addAdjacent(player50PctMoreHP);
+        {
+            player50PctMoreHP.addAdjacent(focusEnemyHighestAP);
+        }
+
+        /* Random Fallback */
+        root.addAdjacent(random);
+        {
+            random.addAdjacent(doRandom);
+        }
+    }
+
+    /* Entrance Nodes */
+    public final Node pawnConfused = new DecisionNode("selfConfused", new Decision[]{
+            Decisions.isSelfConfused
+    });
+
+    public final Node playerHasMortalPawns = new DecisionNode("PlayerMortalPawns", new Decision[]{
+            Decisions.playerHasMortalPawns
+    });
+
+    public final Node playerHasNegativeStatus = new DecisionNode("PlayerHasNegStatus", new Decision[]{
+            Decisions.playerNegStatusPawns,
+    });
+
+    public final Node player50PctLessHP = new DecisionNode("Player50%Less", new Decision[]{
+            Decisions.player50PctLowerHP
+    });
+
+    public final Node player30PctLessHP = new DecisionNode("Player30%Less", new Decision[]{
+            Decisions.player30PctLowerHP
+    });
+
+    public final Node playerEqualHP = new DecisionNode("playerEqual", new Decision[]{
+            Decisions.playerEqualHP
+    });
+
+    public final Node player30PctMoreHP = new DecisionNode("Player30%More", new Decision[]{
+            Decisions.player30PctHigherHP
+    });
+
+    public final Node player50PctMoreHP = new DecisionNode("Player50%More", new Decision[]{
+            Decisions.player50PctHigherHP
+    });
+
+    public final Node random = new DecisionNode("DoRandom", new Decision[]{
+            Decisions.getRandomEnemy
+    });
+
+    /* Interim Nodes */
+
+    public final Node playerCountAndHpLower = new DecisionNode("playerCount&HpLower", new Decision[]{
+            Decisions.playerCountLower,
+            Decisions.playerTotalHpLower
+    });
+
+    public final Node playerCountAndHpHigher = new DecisionNode("PlayerCount&HpHigher ", new Decision[]{
+            Decisions.playerCountHigher,
+            Decisions.playerTotalHPHigher
+    });
+
+    public final Node focusPlayerMortal = new DecisionNode("FocusPlayerMortal", new Decision[]{
+            Decisions.setFocusPlayerMortal
+    });
+
+    public final Node confusedOver50 = new DecisionNode("Confused<50%,CanCure,FocusSelf", new Decision[]{
+            Decisions.confusionUnder50Pct,
+            Decisions.canCureConfusion,
+            Decisions.setFocusSelf
+    });
+
+    public final Node confusedOver67 = new DecisionNode("Confused>67%", new Decision[]{
+            Decisions.confusionOver67Pct
+    });
+
+    public final Node canHealSetFocus = new DecisionNode("CanHeal,SetFocus", new Decision[]{
+            Decisions.canHeal,
+            Decisions.setLowPawnHighestAP
+    });
+
+    public final Node canCure = new DecisionNode("CanCureEffect", new Decision[]{
+            Decisions.canCure
+    });
+
+    public final Node checkAndFocusEnemyMortal = new DecisionNode("CheckAndFocusMortal", new Decision[]{
+            Decisions.checkAndSetEnemyMortal
+    });
+
+    public final Node focusEnemyHighestAP = new DecisionNode("FocusEnemyHighestAP", new Decision[]{
+            Decisions.setEnemyHighestAP
+    });
+
+    public final Node canBuff50Pct = new DecisionNode("CanBuff50/50", new Decision[]{
+            Decisions.chance50Pct,
+            Decisions.canBuff
+    });
+
+    public final Node canCurse = new DecisionNode("CanCurse", new Decision[]{
+            Decisions.canCurse,
+            Decisions.setEnemyHighestAP
+    });
+
+    public final Node confusedRollsOffSoon = new DecisionNode("ConfusedRollsOffSoon", new Decision[]{
+            Decisions.confusionRollOffSoon
+    });
+
+
+    /* Action Nodes */
+
+    public final Node doNothing = new ActionNode(Actions.doNothing, "DoNothing");
+    public final Node doCure = new ActionNode(Actions.selectBestCure, "DoCure");
+    public final Node doBuff = new ActionNode(Actions.selectBestBuff, "DoBuff");
+    public final Node doCurse = new ActionNode(Actions.selectCurse, "DoCurse");
+    public final Node doAttack = new ActionNode(Actions.selectBestAttack, "DoAttack");
+    public final Node doRandom = new ActionNode(Actions.selectRandomAction, "DoRandom");
+
+}
