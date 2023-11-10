@@ -83,7 +83,10 @@ public class GameRestController {
 
             player.getPawnSets().put(setReq.setNum(), pawnSet);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(JsonUtils.writeString(
+                    JsonUtils.newSingleNode("set_num", setReq.setNum())),
+                    HttpStatus.OK
+            );
         } catch (Exception e) {
             Log.SERVER.error(this.getClass(), "/update_pawn_set threw: ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -495,7 +498,6 @@ public class GameRestController {
             var enemyPlayer = gameRoom.getPlayer1().getId() == playerId
                     ? gameRoom.getPlayer2().getPlayer()
                     : gameRoom.getPlayer1().getPlayer();
-
 
             MatchInfo matchInfo = new MatchInfo(
                     player.getPlayerData().getDisplayName(),

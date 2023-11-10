@@ -291,7 +291,7 @@ public enum WeaponCard implements Card {
     LONGBOW_OF_EXCELLENCE(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 2, ORDER)
             .setCost(new StatMap(0, 0, 120, 0))
             .setCostLogic(Cost.GET)
-            .setDamage(SINGLE, new StatMap(225, 0, 0, 0, 1, 1, 0, 0))
+            .setDamage(SINGLE, new StatMap(240, 0, 0, 0, 1, 1, 0, 0))
             .setDamageLogic(DamageCalc.VitalChance.GET(1, 1), DamageLogic.Basic.GET)
             .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL).setSprite(Sprite.LONGBOW_OF_EXCELLENCE))
             .setDescription("An excellently crafted long bow dealing high damage and a near guaranteed vital hit.")
@@ -299,7 +299,7 @@ public enum WeaponCard implements Card {
     LONGBOW_OF_EXCELLENCE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 2, ORDER)
             .setCost(new StatMap(0, 0, 150, 0))
             .setCostLogic(Cost.GET)
-            .setDamage(SINGLE, new StatMap(300, 0, 0, 0, 1, 1, 0, 0))
+            .setDamage(SINGLE, new StatMap(330, 0, 0, 0, 1, 1, 0, 0))
             .setDamageLogic(DamageCalc.VitalChance.GET(1, 1), DamageLogic.Basic.GET)
             .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL).setSprite(Sprite.LONGBOW_OF_EXCELLENCE))
             .setDescription("An excellently crafted long bow dealing high damage and a near guaranteed vital hit." +
@@ -370,7 +370,7 @@ public enum WeaponCard implements Card {
     GLOVES_OF_INFERNO(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
             .setCost(new StatMap(0, 0, 0, 75))
             .setCostLogic(Cost.GET)
-            .setDamage(MULTI, new StatMap(185, 0, 0, 0, .5, 1, .5, 1))
+            .setDamage(MULTI, new StatMap(110, 0, 0, 0, .5, 1, .5, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(2), DamageLogic.Basic.GET)
             .setTargetEffects(new Effect[]{
                     new Effect(MULTI, DE_FORTIFY, true, 75, .7, true, .4, 1, .4, 1)
@@ -379,10 +379,10 @@ public enum WeaponCard implements Card {
             .setAnimation(Animation.build(AnimType.FLAMES, AnimTime.LONG, AnimSpeed.SLOW).setSprite(Sprite.NONE))
             .setDescription("Cast a scorching blast across the land, dealing moderate damage to health and a chance of lowering defense.")
             .build()),
-    GLOVES_OF_INFERNO_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
-            .setCost(new StatMap(0, 0, 0, 120))
+    GLOVES_OF_INFERNO_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
+            .setCost(new StatMap(0, 0, 0, 130))
             .setCostLogic(Cost.GET)
-            .setDamage(MULTI, new StatMap(250, 0, 0, 0, .65, 1, .65, 1))
+            .setDamage(MULTI, new StatMap(165, 0, 0, 0, .65, 1, .65, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(2), DamageLogic.Basic.GET)
             .setTargetEffects(new Effect[]{
                     new Effect(MULTI, DE_FORTIFY, true, 100, .7, true, .4, 1, .4, 1)

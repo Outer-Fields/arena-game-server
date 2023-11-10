@@ -42,3 +42,5 @@ maxFreeGames: 0
 freeGameRewards: false
 freeGameBotOnly: false
 projectMessages: null
+projectAds: null
+otherAds: null
