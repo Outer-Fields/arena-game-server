@@ -55,7 +55,7 @@ public class Pawn {
     private AbilityCard abilityCard2;
     private PowerCard powerCard;
     private final TalismanCard talisman;
-    private final Alignment alignment;
+    private Alignment alignment;
 
     private final List<ActivePower> activePowers = new ArrayList<>();
     private final List<ActiveEffect> statusEffects = new ArrayList<>();
@@ -1137,6 +1137,10 @@ public class Pawn {
         } finally {
             lock.unlock();
         }
+    }
+
+    public void setAlignment(Alignment alignment){
+        this.alignment = alignment;
     }
 
 }

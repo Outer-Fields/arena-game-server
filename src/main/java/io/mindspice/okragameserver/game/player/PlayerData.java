@@ -7,10 +7,14 @@ import io.mindspice.jxch.rpc.util.bech32.AddressUtil;
 import io.mindspice.mindlib.data.tuples.Pair;
 import io.mindspice.mindlib.util.JsonUtils;
 import io.mindspice.okragameserver.game.enums.CardDomain;
+import io.mindspice.okragameserver.game.gameroom.pawn.Pawn;
 import io.mindspice.okragameserver.schema.PawnSet;
 import io.mindspice.okragameserver.util.CardUtil;
+import io.mindspice.okragameserver.util.Log;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 
@@ -37,14 +41,31 @@ public class PlayerData {
                 mappedCards = CardUtil.playerMappedCards(ownedCards);
         this.ownedCards = mappedCards.first();
         this.validCards = mappedCards.second();
-        this.pawnSets = pawnSets.entrySet().stream()
-                .flatMap(entry -> PawnSet.fromJsonEntry(entry)
-                        .map(pawnSet -> new AbstractMap.SimpleEntry<>(entry.getKey(), pawnSet))
-                        .stream())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e1, // handle collision, you can modify this
-                        HashMap::new)); // ensures modifiability
+        this.pawnSets = new ConcurrentHashMap<>(5);
+        pawnSets.forEach((k, v) -> {
+            try {
+                this.pawnSets.put(k, PawnSet.fromJsonEntry(k, v));
+            } catch (IOException e) {
+                Log.SERVER.error(PawnSet.class, "Error deserializing json", e);
+            }
+        });
     }
+
+    public PlayerData(String displayName, String did, PlayerFunds playerFunds, String avatar, Results dailyResults,
+            Results historicalResults, List<String> ownedCards) {
+        this.displayName = displayName != null ? displayName : "";
+        this.playerFunds = playerFunds;
+        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia", did);
+        this.avatar = avatar;
+        this.dailyResults = dailyResults;
+        this.historicalResults = historicalResults;
+        Pair<Map<CardDomain, List<String>>, Map<CardDomain, List<String>>>
+                mappedCards = CardUtil.playerMappedCards(ownedCards);
+        this.ownedCards = mappedCards.first();
+        this.validCards = mappedCards.second();
+    }
+
+
 
     public PlayerData(String displayName, PlayerFunds playerFunds, String did, String avatar,
             Map<Integer, PawnSet> pawnSets, Results dailyResults, Results historicalResults, List<String> ownedCards) {
@@ -87,11 +108,6 @@ public class PlayerData {
         );
     }
 
-    public void updatePawnSets(int setNum, PawnSet pawnSet) {
-        var newPawnSets = new HashMap<>(this.pawnSets);
-        newPawnSets.put(setNum, pawnSet);
-        this.pawnSets = Collections.unmodifiableMap(newPawnSets);
-    }
 
     public String getDisplayName() {
         return displayName;

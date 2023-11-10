@@ -31,6 +31,7 @@ public class Player {
     private final Set<String> ips = new HashSet<>(1);
     protected volatile boolean inGame = false;
     private volatile boolean isPremium = false;
+    private boolean fetchedPawnSets = false;
     /* Internal Info*/
     private volatile PlayerData playerData;
     /* Abuse filters */
@@ -103,6 +104,14 @@ public class Player {
 
     public long getLastMsgTime() {
         return lastMsgTime;
+    }
+
+    public void setFetchedPawnSets(){
+        fetchedPawnSets = true;
+    }
+
+    public boolean haveFetchedPawnSets() {
+        return fetchedPawnSets;
     }
 
     public void setLastMsgTime() {

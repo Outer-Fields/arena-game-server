@@ -17,15 +17,13 @@ import static io.mindspice.okragameserver.game.enums.StatType.HP;
 
 public class PlayerGameState {
 
-
     // Thread visibility on this class is protected by volatiles, all the methods calling methods on pawns
-   //  are protected internally by the pawn class reentrant lock
-
+    //  are protected internally by the pawn class reentrant lock
 
     private volatile boolean isReady = false;
-    private volatile boolean  playerLost = false;
+    private volatile boolean playerLost = false;
     private final Player player;
-    private final List<Pawn> pawns = new ArrayList<>(3);
+    private List<Pawn> pawns = new ArrayList<>(3);
     private volatile String name;
     public volatile int timedOutAmount = 0;
     private final List<PotionCard> potionCards = new ArrayList<>();
@@ -59,6 +57,10 @@ public class PlayerGameState {
                     ps.pawnLoadouts()[i].powerDeck())
             );
         }
+    }
+
+    public PlayerGameState(Player player) {
+        this.player = player;
     }
 
     public void send(Object msgObj) {
@@ -121,8 +123,6 @@ public class PlayerGameState {
     public void setPlayerLost(boolean playerLost) {
         this.playerLost = playerLost;
     }
-
-
 
     public void setPotions(List<PotionCard> potionCards) {
         if (potionCards == null) {
@@ -234,7 +234,7 @@ public class PlayerGameState {
 
     public List<ActiveEffect> getDisablingStatuses(PawnIndex pawnIndex) {
         var statuses = getNegativeStatus(pawnIndex);
-        if (statuses.isEmpty()) return null;
+        if (statuses.isEmpty()) { return null; }
         var disablingEffects = new ArrayList<ActiveEffect>();
 
         for (ActiveEffect e : statuses) {
@@ -252,7 +252,7 @@ public class PlayerGameState {
 
     public boolean hasMortallyLowPawn() {
         for (Pawn p : getLivingPawns()) {
-            if (p.getStat(HP) < (p.getStatMax(HP) / 6)) return true;
+            if (p.getStat(HP) < (p.getStatMax(HP) / 6)) { return true; }
         }
         return false;
     }
@@ -284,7 +284,7 @@ public class PlayerGameState {
                 .filter(p -> p.getStat(HP) < (p.getStatMax(HP) / 6))
                 .max(Comparator.comparingDouble(Pawn::getActionPotential));
 
-        if (pawn.isPresent()) lowPawn = pawn.get();
+        if (pawn.isPresent()) { lowPawn = pawn.get(); }
 
         if (lowPawn == null) {
             pawn = getLivingPawns()
@@ -292,7 +292,7 @@ public class PlayerGameState {
                     .sorted(Comparator.comparing(p -> p.getStat(HP)))
                     .max(Comparator.comparingDouble(Pawn::getActionPotential));
         }
-        if (pawn.isPresent()) lowPawn = pawn.get();
+        if (pawn.isPresent()) { lowPawn = pawn.get(); }
 
         return lowPawn == null ? PawnIndex.PAWN1 : lowPawn.getIndex();
     }
@@ -359,5 +359,9 @@ public class PlayerGameState {
     @Override
     public int hashCode() {
         return Objects.hash(player.getId());
+    }
+
+    public void setPawns(List<Pawn> pawns) {
+        this.pawns = pawns;
     }
 }

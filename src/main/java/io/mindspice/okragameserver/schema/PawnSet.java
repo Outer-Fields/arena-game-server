@@ -71,16 +71,11 @@ public record PawnSet(
 //        }
 //    }
 //
-    public static Optional<PawnSet> fromJsonEntry(Map.Entry<Integer, String> pawnEntry) {
-        try {
-            JsonNode setData = JsonUtils.readTree(pawnEntry.getValue());
+    public static PawnSet fromJsonEntry(int index, String json) throws IOException {
+            JsonNode setData = JsonUtils.readTree(json);
             String name = setData.get("set_name").asText();
             PawnLoadOut[] pawnLoadOuts = JsonUtils.readJson(setData.get("pawn_loadouts"), PawnLoadOut[].class);
-            return Optional.of(new PawnSet(pawnEntry.getKey(), name, pawnLoadOuts));
-        } catch (IOException e) {
-            Log.SERVER.error(PawnSet.class, "Error deserializing json", e);
-        }
-        return Optional.empty();
+            return new PawnSet(index, name, pawnLoadOuts);
     }
 
     public String toJsonString() throws JsonProcessingException {

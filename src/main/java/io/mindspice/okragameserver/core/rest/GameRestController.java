@@ -69,14 +69,16 @@ public class GameRestController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            System.out.println(setReq);
-
             Player player = playerTable.get(playerId);
             if (player == null) { return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); }
             if (player.restTimeout()) {
                 Log.ABUSE.info("Too many requests | PlayerId:  + playerId +  | OriginIP: " + originIp);
                 return new ResponseEntity<>(HttpStatus.TOO_MANY_REQUESTS);
             }
+            if (setReq.setNum() < 0 || setReq.setNum() > 4) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
             PawnSet pawnSet = new PawnSet(setReq.setNum(), setReq.setName(), setReq.pawnLoadOut());
             serviceClient.gameAPI().updatePawnSet(
                     playerId, setReq.setNum(), pawnSet.toJsonString());
@@ -87,6 +89,43 @@ public class GameRestController {
                     JsonUtils.newSingleNode("set_num", setReq.setNum())),
                     HttpStatus.OK
             );
+        } catch (Exception e) {
+            Log.SERVER.error(this.getClass(), "/update_pawn_set threw: ", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @PostMapping("/delete_pawn_set")
+    public ResponseEntity<String> deletePawnSet(
+            @RequestHeader("CF-Connecting-IP") String originIp,
+            @RequestBody String req,
+            @RequestHeader("token") String token) {
+        try {
+            if (token == null || token.isEmpty()) {
+                Log.ABUSE.info("Request with no token | OriginIP: " + originIp);
+
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            int playerId = serviceClient.getPlayerId(token);
+            if (playerId == -2) { return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); }
+            if (playerId == -1) {
+                Log.ABUSE.info("Request with invalid token | OriginIP: " + originIp);
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            Player player = playerTable.get(playerId);
+            if (player == null) { return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); }
+            if (player.restTimeout()) {
+                Log.ABUSE.info("Too many requests | PlayerId:  + playerId +  | OriginIP: " + originIp);
+                return new ResponseEntity<>(HttpStatus.TOO_MANY_REQUESTS);
+            }
+
+            JsonNode json = JsonUtils.readTree(req);
+            int setNum = json.get("set_num").asInt();
+            serviceClient.gameAPI().deletePawnSet(playerId, setNum);
+            player.getPawnSets().remove(setNum);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             Log.SERVER.error(this.getClass(), "/update_pawn_set threw: ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -273,6 +312,7 @@ public class GameRestController {
             @RequestHeader("CF-Connecting-IP") String originIp,
             @RequestHeader("token") String token) {
         try {
+
             if (token == null || token.isEmpty()) {
                 Log.ABUSE.info("Request with no token | OriginIP: " + originIp);
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -298,6 +338,8 @@ public class GameRestController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
+            player.setIp(originIp);
+
             if (player.restTimeout()) {
                 Log.ABUSE.info("PlayerId: " + playerId + " | Too many requests| OriginIP:" + originIp);
                 return new ResponseEntity<>(HttpStatus.TOO_MANY_REQUESTS);
@@ -313,21 +355,35 @@ public class GameRestController {
                 if (playerDid != null) {
                     ownedCards = serviceClient.gameAPI().getPlayerCards(playerDid).data().orElse(List.of());
                 }
-                Map<Integer, String> pawnSets = serviceClient.gameAPI().getPawnSets(playerId).data().orElse(new HashMap<>());
 
-                player.setFullPlayerData(
-                        new PlayerData(
-                                playerInfo.displayName(),
-                                playerDid,
-                                playerFunds,
-                                playerInfo.avatar(),
-                                pawnSets,
-                                dailyResults,
-                                historicalResults,
-                                ownedCards == null ? List.of() : ownedCards
-                        )
-                );
-                player.setIp(originIp);
+                if (!player.haveFetchedPawnSets()) {
+                    Map<Integer, String> pawnSets = serviceClient.gameAPI().getPawnSets(playerId).data().orElse(new HashMap<>());
+
+                    player.setFullPlayerData(
+                            new PlayerData(
+                                    playerInfo.displayName(),
+                                    playerDid,
+                                    playerFunds,
+                                    playerInfo.avatar(),
+                                    pawnSets,
+                                    dailyResults,
+                                    historicalResults,
+                                    ownedCards == null ? List.of() : ownedCards
+                            )
+                    );
+                } else {
+                    player.setFullPlayerData(
+                            new PlayerData(
+                                    playerInfo.displayName(),
+                                    playerDid,
+                                    playerFunds,
+                                    playerInfo.avatar(),
+                                    dailyResults,
+                                    historicalResults,
+                                    ownedCards == null ? List.of() : ownedCards
+                            )
+                    );
+                }
             }
             if (player.getPlayerData() == null) {
                 throw new IllegalStateException("Player data is null");
