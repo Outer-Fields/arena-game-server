@@ -40,6 +40,7 @@ public class GameRoom implements Runnable {
     private volatile List<Integer> freeGameIds = List.of();
     private volatile long keepAliveTimer = Instant.now().getEpochSecond();
     private volatile long connTimeTimer = Instant.now().getEpochSecond();
+    private final boolean isBotGame;
 
     /* States */
     private PlayerGameState player1; // Effectively final, though they do have a setter for testing
@@ -55,6 +56,12 @@ public class GameRoom implements Runnable {
         roomId = UUID.randomUUID();
         player1 = p1GameState;
         player2 = p2GameState;
+        if (player1.getPlayer().isBot() || player2.getPlayer().isBot()) {
+            isBotGame = true;
+        } else {
+            isBotGame = false;
+        }
+
         player1.setRoomId(roomId);
         player2.setRoomId(roomId);
 
@@ -166,7 +173,7 @@ public class GameRoom implements Runnable {
                 disconnPlayers.remove(player); //CoW Array so we can do this
             } else {
                 player.timedOutAmount++;
-                if (player.timedOutAmount > 90 * 5) { // 5 updates a sec
+                if (player.timedOutAmount > (isBotGame ? (14400 * 5) : (90 * 5))) { // 5 updates a sec
                     gameOver = true;
                     disconnLoss(player);
                 }
@@ -281,7 +288,6 @@ public class GameRoom implements Runnable {
                     endGame();
                 }
             }
-            System.out.println("RoundTime:" + (Instant.now().getEpochSecond() - now));
         } catch (Exception e) {
             Log.SERVER.error(this.getClass(), "GameRoom: " + roomId + " | Exception in update loop ", e);
         }

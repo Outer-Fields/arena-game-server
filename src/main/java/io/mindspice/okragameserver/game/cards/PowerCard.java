@@ -115,13 +115,13 @@ public enum PowerCard implements Card {
     ),
     MIRROR_SKIN(CollectionSet.ORIGINS,2,
             new Power[]{
-                    new Power(PowerEnums.PowerType.RESIST_POISON, 1, .1),
+                    new Power(PowerEnums.PowerType.REFLECTION, 1, .1),
             },
             "Imparts a small chance of reflecting attacks."
     ),
     MIRROR_SKIN_GOLD(CollectionSet.ORIGINS,4,
             new Power[]{
-                    new Power(PowerEnums.PowerType.RESIST_POISON, 1, .2),
+                    new Power(PowerEnums.PowerType.REFLECTION, 1, .2),
             },
             "Imparts a moderate chance of reflecting attacks."
     ),
@@ -141,37 +141,37 @@ public enum PowerCard implements Card {
             new Power[]{
                     new Power(PowerEnums.PowerType.BUFF_MELEE, 1.06, 1)
             },
-            "Imparts a large increase in luck."
+            "Imparts a moderate buff to melee attack damage"
     ),
     MARTIAL_MASTER_GOLD(CollectionSet.ORIGINS,4,
             new Power[]{
                     new Power(PowerEnums.PowerType.BUFF_MELEE, 1.12, 1)
             },
-            "Imparts a large increase in luck."
+            "Imparts a large buff to melee attack damage"
     ),
     ARCANE_MASTER(CollectionSet.ORIGINS,2,
             new Power[]{
                     new Power(PowerEnums.PowerType.BUFF_MAGIC, 1.06, 1)
             },
-            "Imparts a large increase in luck."
+            "Imparts a moderate buff to magic based attack damage"
     ),
     ARCANE_MASTER_GOLD(CollectionSet.ORIGINS,4,
             new Power[]{
                     new Power(PowerEnums.PowerType.BUFF_MAGIC, 1.12, 1)
             },
-            "Imparts a large increase in luck."
+            "Imparts a large buff to magic based attack damage"
     ),
     RANGED_MASTER(CollectionSet.ORIGINS,2,
             new Power[]{
                     new Power(PowerEnums.PowerType.INCREASE_LUCK, 1.06, 1)
             },
-            "Imparts a large increase in luck."
+            "Imparts a moderate buff to ranged based attack damage"
     ),
     RANGED_MASTER_GOLD(CollectionSet.ORIGINS,4,
             new Power[]{
                     new Power(PowerEnums.PowerType.INCREASE_LUCK, 1.12, 1)
             },
-            "Imparts a large increase in luck."
+            "Imparts a moderate large to ranged based attack damage"
     );
     public final CollectionSet collectionSet;
     public final int level;

@@ -71,8 +71,6 @@ public class ActiveEffect {
     }
 
     public boolean update() {
-        System.out.println(rollOffRounds);
-        System.out.println(expectedRollOffRound);
         if (effect.isRollOffChance) {
             if (expectedRollOffRound > 0) { --expectedRollOffRound; }
 

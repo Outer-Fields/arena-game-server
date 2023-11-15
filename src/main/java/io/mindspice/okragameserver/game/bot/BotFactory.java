@@ -25,6 +25,12 @@ public class BotFactory {
         botPlayer.setFullPlayerData(new PlayerData("Bot"));
         return new BotPlayerState(botPlayer, enemyPlayerState, botPawnSet, botExecutor);
     }
+    public BotPlayerState getHighLvlBotPlayerState(PlayerGameState enemyPlayerState) {
+        PawnSet botPawnSet = PawnSet.getRandomPawnSet2();
+        BotPlayer botPlayer = new BotPlayer();
+        botPlayer.setFullPlayerData(new PlayerData("Bot"));
+        return new BotPlayerState(botPlayer, enemyPlayerState, botPawnSet, botExecutor);
+    }
 
     public BotPlayerState getBotPlayerStateForBotVsBot(Player botPlayer, int enemyPawnSetLevel) {
         PawnSet botPawnSet = PawnSet.getRandomPawnSet(enemyPawnSetLevel);

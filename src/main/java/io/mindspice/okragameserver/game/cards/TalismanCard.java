@@ -33,7 +33,7 @@ public enum TalismanCard {
     STABILITY_STONE_GOLD(CollectionSet.ORIGINS, ORDER,
             /*Stats*/
             new EnumMap<StatType, Integer>(Map.ofEntries(
-                    entry(SP, 150))),
+                    entry(DP, 150))),
             /*Max*/
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(DP, 75))),

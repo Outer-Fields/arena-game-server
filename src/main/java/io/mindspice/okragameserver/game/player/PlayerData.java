@@ -33,7 +33,7 @@ public class PlayerData {
             Map<Integer, String> pawnSets, Results dailyResults, Results historicalResults, List<String> ownedCards) {
         this.displayName = displayName != null ? displayName : "";
         this.playerFunds = playerFunds;
-        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia", did);
+        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia:", did);
         this.avatar = avatar;
         this.dailyResults = dailyResults;
         this.historicalResults = historicalResults;
@@ -55,7 +55,7 @@ public class PlayerData {
             Results historicalResults, List<String> ownedCards) {
         this.displayName = displayName != null ? displayName : "";
         this.playerFunds = playerFunds;
-        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia", did);
+        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia:", did);
         this.avatar = avatar;
         this.dailyResults = dailyResults;
         this.historicalResults = historicalResults;
@@ -71,7 +71,7 @@ public class PlayerData {
             Map<Integer, PawnSet> pawnSets, Results dailyResults, Results historicalResults, List<String> ownedCards) {
         this.displayName = displayName;
         this.playerFunds = playerFunds;
-        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia", did);
+        this.did = did == null ? null : did.startsWith("did") ? did : AddressUtil.encode("did:chia:", did);
         this.avatar = avatar;
         this.dailyResults = dailyResults;
         this.historicalResults = historicalResults;

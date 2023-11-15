@@ -134,6 +134,11 @@ public class Player {
         return connection;
     }
 
+    public double getWinRatio(){
+        return (double) playerData.getHistoricalResults().wins() /
+                playerData.getHistoricalResults().wins() + playerData.getHistoricalResults().losses();
+    }
+
     // Requests and messages
     public void onMessage(NetGameAction msg) {
         if (wsTimeout()) {

@@ -85,10 +85,7 @@ public class GameRestController {
 
             player.getPawnSets().put(setReq.setNum(), pawnSet);
 
-            return new ResponseEntity<>(JsonUtils.writeString(
-                    JsonUtils.newSingleNode("set_num", setReq.setNum())),
-                    HttpStatus.OK
-            );
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             Log.SERVER.error(this.getClass(), "/update_pawn_set threw: ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -125,7 +122,11 @@ public class GameRestController {
             int setNum = json.get("set_num").asInt();
             serviceClient.gameAPI().deletePawnSet(playerId, setNum);
             player.getPawnSets().remove(setNum);
-            return new ResponseEntity<>(HttpStatus.OK);
+
+            return new ResponseEntity<>(JsonUtils.writeString(
+                    JsonUtils.newSingleNode("set_num", setNum)),
+                    HttpStatus.OK
+            );
         } catch (Exception e) {
             Log.SERVER.error(this.getClass(), "/update_pawn_set threw: ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -599,6 +600,33 @@ public class GameRestController {
             Log.SERVER.error(this.getClass(), "/get_match_info threw: ", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
+        }
+    }
+
+    @GetMapping("get_leaderboard")
+    public ResponseEntity<String> getLeaderBoard(
+            @RequestHeader("CF-Connecting-IP") String originIp,
+            @RequestHeader("token") String token) {
+        try {
+            if (token == null || token.isEmpty()) {
+                Log.ABUSE.info("Request with no token | OriginIP: " + originIp);
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            int playerId = serviceClient.getPlayerId(token);
+            if (playerId == -2) { return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); }
+            if (playerId == -1) {
+                Log.ABUSE.info("Request with invalid token | OriginIP: " + originIp);
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            JsonNode leaderBoard = serviceClient.getLeaderBoard();
+            if (leaderBoard != null) {
+                return new ResponseEntity<>(JsonUtils.writeString(leaderBoard), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            Log.SERVER.error(this.getClass(), "/get_match_info threw: ", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

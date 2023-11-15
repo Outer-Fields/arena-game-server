@@ -149,9 +149,19 @@ public class GameServer {
                 long now = Instant.now().getEpochSecond();
 
                 for (var player1 : matchQueue) {
+                    innerLoop:
                     for (var player2 : matchQueue) {
                         if (player1 == player2 || queueRemovals.contains(player1) || queueRemovals.contains(player2)) {
                             continue;
+                        }
+                        for (var ip : player1.player().getIp()) {
+                            if (player2.player().getIp().contains(ip)) {
+                                Log.ABUSE.info("Same ip match attempt | Player1: "
+                                        + player1.player().getId() + " " + player1.player().getIp()
+                                        + " | player2: " + player2.player().getId() + player2.player().getIp()
+                                );
+                                break innerLoop;
+                            }
                         }
                         if ((player1.setLevel() == -1 || player2.setLevel() == -1)
                                 || Math.abs(player1.setLevel() - player2.setLevel()) < setDiff) {
@@ -311,7 +321,10 @@ public class GameServer {
         } else {
             p1State = new PlayerGameState(player1.player(), player1.pawnSet());
         }
-        BotPlayerState bState = botFactory.getBotPlayerState(p1State, player1Lvl);
+
+        BotPlayerState bState = player1.player().getWinRatio() >= 0.6
+                ? botFactory.getBotPlayerState(p1State, player1Lvl)
+                : botFactory.getHighLvlBotPlayerState(p1State);
 
         PlayerGameState firstPlayer = ThreadLocalRandom.current()
                 .nextInt(0, 100) < 49
@@ -375,7 +388,7 @@ public class GameServer {
                 return;
             }
 
-            if(matchResult.endFlag() == MatchResult.EndFlag.DISCONNECT && matchResult.roundCount() < 5) {
+            if (matchResult.endFlag() == MatchResult.EndFlag.DISCONNECT && matchResult.roundCount() < 5) {
                 matchResult.player1().send(new NetGameOver(false, matchResult.endFlag(), "Player Disconnected"));
                 matchResult.player2().send(new NetGameOver(false, matchResult.endFlag(), "Player Disconnected"));
             }

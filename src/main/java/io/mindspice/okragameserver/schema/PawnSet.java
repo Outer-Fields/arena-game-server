@@ -18,6 +18,8 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
+import static io.mindspice.okragameserver.game.enums.ActionType.RANGED;
+
 
 public record PawnSet(
         @JsonProperty("set_num") int setNum,
@@ -72,10 +74,10 @@ public record PawnSet(
 //    }
 //
     public static PawnSet fromJsonEntry(int index, String json) throws IOException {
-            JsonNode setData = JsonUtils.readTree(json);
-            String name = setData.get("set_name").asText();
-            PawnLoadOut[] pawnLoadOuts = JsonUtils.readJson(setData.get("pawn_loadouts"), PawnLoadOut[].class);
-            return new PawnSet(index, name, pawnLoadOuts);
+        JsonNode setData = JsonUtils.readTree(json);
+        String name = setData.get("set_name").asText();
+        PawnLoadOut[] pawnLoadOuts = JsonUtils.readJson(setData.get("pawn_loadouts"), PawnLoadOut[].class);
+        return new PawnSet(index, name, pawnLoadOuts);
     }
 
     public String toJsonString() throws JsonProcessingException {
@@ -216,6 +218,201 @@ public record PawnSet(
             pawnLoadOuts[i] = pawnLoadOut;
         }
         return new PawnSet(-1, "BotSet", pawnLoadOuts, levelCap);
+    }
+
+    public static PawnSet getRandomPawnSet2() {
+        List<PawnCard> pawnCards = IntStream.range(0, 3).mapToObj(i -> CardUtil.getRandomPawn()).toList();
+        List<TalismanCard> talismanCards = new ArrayList<>(3);
+        List<WeaponCard[]> weaponCards = new ArrayList<>(3);
+        for (var pawn : pawnCards) {
+            switch (pawn.actionType) {
+                case MELEE -> {
+                    switch (ThreadLocalRandom.current().nextInt(0, 4)) {
+                        case 0 -> talismanCards.add(TalismanCard.WARRIORS_ORNAMENT);
+                        case 1 -> talismanCards.add(TalismanCard.JEWEL_OF_CONQUEST);
+                        case 2 -> talismanCards.add(TalismanCard.OKRITHRIAL_PENDANT_GOLD);
+                        case 3 -> talismanCards.add((TalismanCard.OKRITHRIAL_PENDANT));
+                    }
+                }
+                case MAGIC -> {
+                    switch (ThreadLocalRandom.current().nextInt(0, 5)) {
+                        case 0 -> talismanCards.add(TalismanCard.AMULET_OF_ARCANE_CHAOS);
+                        case 1 -> talismanCards.add(TalismanCard.PENDANT_OF_DEFENSE_GOLD);
+                        case 2 -> talismanCards.add(TalismanCard.PENDANT_OF_DEFENSE);
+                        case 3 -> talismanCards.add((TalismanCard.RELIC_OF_THE_ARCANE));
+                        case 4 -> talismanCards.add(TalismanCard.OKRITHRIAL_PENDANT_GOLD);
+                    }
+                }
+                case RANGED -> {
+                    switch (ThreadLocalRandom.current().nextInt(0, 5)) {
+                        case 0 -> talismanCards.add(TalismanCard.PENDANT_OF_DEFENSE);
+                        case 1 -> talismanCards.add(TalismanCard.JEWEL_OF_CONQUEST);
+                        case 2 -> talismanCards.add(TalismanCard.FRAGMENT_OF_THE_LUCKMEISTER);
+                        case 3 -> talismanCards.add((TalismanCard.OKRITHRIAL_PENDANT_GOLD));
+                        case 4 -> talismanCards.add(TalismanCard.BALANCE_BEAD);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 3; ++i) {
+            switch (pawnCards.get(i).actionType) {
+                case MELEE -> {
+                    switch (talismanCards.get(i).alignment) {
+                        case Alignment.CHAOS -> {
+                            if (ThreadLocalRandom.current().nextBoolean()) {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.OKRITHRIAL_GLADIUS, WeaponCard.DUMBBRINGERS_CUDGEL});
+                            } else {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.KNUCKLEDUSTER, WeaponCard.MJOLNIR_HAMMER});
+                            }
+                        }
+                        case ORDER -> {
+                            if (ThreadLocalRandom.current().nextBoolean()) {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.OKRITHRIAL_GLADIUS_GOLD, WeaponCard.CUTLASS_OF_FURY_GOLD});
+                            } else {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.ZWEIHANDER_OF_EXCELLENCE_GOLD, WeaponCard.CUTLASS_OF_FURY});
+                            }
+                        }
+                        case NEUTRAL -> {
+                            switch (ThreadLocalRandom.current().nextInt(0, 4)) {
+                                case 0 -> weaponCards.add(new WeaponCard[]{WeaponCard.OKRITHRIAL_GLADIUS, WeaponCard.DUMBBRINGERS_CUDGEL});
+                                case 1 -> weaponCards.add(new WeaponCard[]{WeaponCard.KNUCKLEDUSTER, WeaponCard.MJOLNIR_HAMMER});
+                                case 2 ->
+                                        weaponCards.add(new WeaponCard[]{WeaponCard.OKRITHRIAL_GLADIUS_GOLD, WeaponCard.CUTLASS_OF_FURY_GOLD});
+                                case 3 ->
+                                        weaponCards.add(new WeaponCard[]{WeaponCard.ZWEIHANDER_OF_EXCELLENCE_GOLD, WeaponCard.CUTLASS_OF_FURY});
+                            }
+                        }
+                    }
+                }
+
+                case MAGIC -> {
+                    switch (talismanCards.get(i).alignment) {
+                        case Alignment.CHAOS -> {
+                            if (ThreadLocalRandom.current().nextBoolean()) {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.STAFF_OF_ROUGE_SIPHON, WeaponCard.SCROLL_OF_MOLTEN_RAIN});
+                            } else {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.SCROLL_OF_MOLTEN_RAIN_GOLD, WeaponCard.GLOVES_OF_INFERNO});
+                            }
+                        }
+                        case ORDER -> {
+                            if (ThreadLocalRandom.current().nextBoolean()) {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.GLOVES_OF_INFERNO, WeaponCard.STAFF_OF_THUNDERBOLT_GOLD});
+                            } else {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.STAFF_OF_THUNDERBOLT, WeaponCard.GLOVES_OF_INFERNO});
+                            }
+                        }
+                        case NEUTRAL -> {
+                            switch (ThreadLocalRandom.current().nextInt(0, 4)) {
+                                case 0 ->
+                                        weaponCards.add(new WeaponCard[]{WeaponCard.STAFF_OF_ROUGE_SIPHON, WeaponCard.SCROLL_OF_MOLTEN_RAIN});
+                                case 1 ->
+                                        weaponCards.add(new WeaponCard[]{WeaponCard.SCROLL_OF_MOLTEN_RAIN_GOLD, WeaponCard.GLOVES_OF_INFERNO});
+                                case 2 ->
+                                        weaponCards.add(new WeaponCard[]{WeaponCard.GLOVES_OF_INFERNO, WeaponCard.STAFF_OF_THUNDERBOLT_GOLD});
+                                case 3 -> weaponCards.add(new WeaponCard[]{WeaponCard.STAFF_OF_THUNDERBOLT, WeaponCard.GLOVES_OF_INFERNO});
+                            }
+                        }
+                    }
+
+                }
+                case RANGED -> {
+                    switch (talismanCards.get(i).alignment) {
+                        case Alignment.CHAOS -> {
+                            if (ThreadLocalRandom.current().nextBoolean()) {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.BOW_OF_POISONING, WeaponCard.JAVELIN_OF_MIGHT_GOLD});
+                            } else {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.BOW_OF_SWIFTNESS, WeaponCard.SHADOW_DAGGER});
+                            }
+                        }
+                        case ORDER -> {
+                            if (ThreadLocalRandom.current().nextBoolean()) {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.JAVELIN_OF_MIGHT, WeaponCard.IMPERIAL_CROSSBOW});
+                            } else {
+                                weaponCards.add(new WeaponCard[]{WeaponCard.LONGBOW_OF_EXCELLENCE, WeaponCard.IMPERIAL_CROSSBOW});
+                            }
+                        }
+                        case NEUTRAL -> {
+                            switch (ThreadLocalRandom.current().nextInt(0, 4)) {
+                                case 0 -> weaponCards.add(new WeaponCard[]{WeaponCard.BOW_OF_POISONING, WeaponCard.JAVELIN_OF_MIGHT_GOLD});
+                                case 1 -> weaponCards.add(new WeaponCard[]{WeaponCard.BOW_OF_SWIFTNESS, WeaponCard.SHADOW_DAGGER});
+                                case 2 -> weaponCards.add(new WeaponCard[]{WeaponCard.JAVELIN_OF_MIGHT, WeaponCard.IMPERIAL_CROSSBOW});
+                                case 3 -> weaponCards.add(new WeaponCard[]{WeaponCard.LONGBOW_OF_EXCELLENCE, WeaponCard.IMPERIAL_CROSSBOW});
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        List<List<PowerCard>> powerCards = new ArrayList<>(3);
+        for (int i = 0; i < 3; ++i) {
+            switch (pawnCards.get(i).actionType) {
+                case MELEE ->
+                        powerCards.add(List.of(PowerCard.DOUBLER, PowerCard.MARTIAL_MASTER, PowerCard.MARTIAL_MASTER_GOLD, PowerCard.CRAFT_MASTER));
+                case MAGIC ->
+                        powerCards.add(List.of(PowerCard.ARCANE_MASTER_GOLD, PowerCard.LUCKY_CLOVER, PowerCard.MIRROR_SKIN, PowerCard.WARRIORS_BLESSING));
+                case RANGED ->
+                        powerCards.add(List.of(PowerCard.WARRIORS_BLESSING, PowerCard.RANGED_MASTER_GOLD, PowerCard.IMPRENETRATION, PowerCard.DOUBLER));
+            }
+        }
+        List<List<ActionCard>> actionCards = new ArrayList<>(3);
+        List<List<AbilityCard>> abilityCards = new ArrayList<>(3);
+        for (int i = 0; i < 3; ++i) {
+            var actionType = pawnCards.get(i).actionType;
+            var alignment = talismanCards.get(i).alignment;
+            List<ActionCard> aCards = new ArrayList<>(8);
+            List<AbilityCard> abCards = new ArrayList<>(8);
+            for (int j = 0; j < 4; ++j) {
+                List<ActionCard> cardOpt = new ArrayList<>();
+                while (cardOpt.isEmpty()) {
+                    cardOpt = Arrays.stream(ActionCard.values())
+                            .filter(c -> c.getStats().getActionType() == actionType)
+                            .filter(c -> alignment == Alignment.NEUTRAL || c.getStats().getAlignment() == alignment)
+                            .filter(c -> ThreadLocalRandom.current().nextInt(3) < 2 ? c.getStats().getLevel() > 2 : c.getStats().getLevel() < 4)
+                            .toList();
+                }
+                aCards.add(cardOpt.get(ThreadLocalRandom.current().nextInt(cardOpt.size())));
+            }
+            for (int j = 0; j < 4; ++j) {
+                List<ActionCard> cardOpt = new ArrayList<>();
+                while (cardOpt.isEmpty()) {
+                    cardOpt = Arrays.stream(ActionCard.values())
+                            .filter(c -> c.getStats().getActionType() == actionType)
+                            .filter(c -> ThreadLocalRandom.current().nextInt(3) < 2 ? c.getStats().getLevel() > 2 : c.getStats().getLevel() < 4)
+                            .toList();
+                    aCards.add(cardOpt.get(ThreadLocalRandom.current().nextInt(cardOpt.size())));
+                }
+                actionCards.add(aCards);
+            }
+            for (int j = 0; j < 8; ++j) {
+                List<AbilityCard> cardOpt = new ArrayList<>();
+                while (cardOpt.isEmpty()) {
+                    cardOpt = Arrays.stream(AbilityCard.values())
+                            .filter(c -> ThreadLocalRandom.current().nextInt(3) < 2 ? c.getStats().getLevel() < 3 : c.getStats().getLevel() > 2)
+                            .toList();
+                }
+                abCards.add(cardOpt.get(ThreadLocalRandom.current().nextInt(cardOpt.size())));
+            }
+            abilityCards.add(abCards);
+        }
+        PawnLoadOut[] loadouts = new PawnLoadOut[3];
+
+        for (int i = 0; i < 3; ++i) {
+            loadouts[i] = new PawnLoadOut(
+                    pawnCards.get(i),
+                    talismanCards.get(i),
+                    weaponCards.get(i)[0],
+                    weaponCards.get(i)[1],
+                    actionCards.get(i).stream().map(c -> (ActionCard) c).toList(),
+                    abilityCards.get(i),
+                    powerCards.get(i)
+            );
+        }
+
+        return new PawnSet(
+                -1,
+                "botSet",
+                loadouts
+        );
     }
 
     private static int[] getLoadoutLevels(int levelCap) {
