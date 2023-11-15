@@ -25,7 +25,7 @@ public class ActionReturn {
     public boolean isInvalid;
     public boolean isFailed = false;
     public boolean hasInsight = false;
-    public InvalidMsg msg; // for debug/log purpose
+    public InvalidMsg invalidMsg; // for debug/log purpose
     private String cardName;
     public PlayerAction action;
 
@@ -37,14 +37,14 @@ public class ActionReturn {
 //        this.isInvalid = false;
 //    }
 
-    private ActionReturn(List<PawnInterimState> playerPawnStates, String cardName, InvalidMsg msg) {
+    private ActionReturn(List<PawnInterimState> playerPawnStates, String cardName, InvalidMsg invalidMsg) {
         assert (!playerPawnStates.isEmpty());
         this.playerPawnStates = playerPawnStates;
         this.targetPawnStates = new ArrayList<>();
         this.animation = null;
         this.isInvalid = true;
         this.cardName = cardName;
-        this.msg = msg;
+        this.invalidMsg = invalidMsg;
     }
 
     public ActionReturn(List<PawnInterimState> playerPawnStates, List<PawnInterimState> targetPawnStates,
@@ -104,13 +104,12 @@ public class ActionReturn {
     }
 
     public void doAction() {
-        // Remove un-affected pawnLoadouts, first player pawn must be kept for animation indexing
+        // Remove un-effected interim states, first player pawn must be kept for animation indexing
         Iterator<PawnInterimState> pisIter = playerPawnStates.listIterator(1); // Start from the second pawn
         while (pisIter.hasNext()) {
             var pis = pisIter.next();
             if (pis.getActionFlags().isEmpty()) { pisIter.remove(); }
         }
-
         targetPawnStates.removeIf(pis -> pis.getActionFlags().isEmpty());
 
         if (targetPawnStates.isEmpty() && (playerPawnStates.size() == 1 && playerPawnStates.get(0).getActionFlags().isEmpty())) {
@@ -128,7 +127,6 @@ public class ActionReturn {
             pis.doEffect();
         }
         assert (!playerPawnStates.isEmpty());
-
     }
 
     public static ActionReturn getInvalid(Pawn playerPawn, InvalidMsg msg, String cardName) {
@@ -164,7 +162,7 @@ public class ActionReturn {
         sb.append("\n");
         sb.append("  hasInsight: ").append(hasInsight);
         sb.append("\n");
-        sb.append("  msg: ").append(msg);
+        sb.append("  msg: ").append(invalidMsg);
         sb.append("\n");
         sb.append("  cardName: ").append("\"").append(cardName).append('\"');
         sb.append("\n");
@@ -173,7 +171,7 @@ public class ActionReturn {
 
     public JsonNode getLogInfo() {
         return new JsonUtils.ObjectBuilder()
-                .put("msg", msg)
+                .put("msg", invalidMsg)
                 .put("player_pawn_states", playerPawnStates.stream().map(PawnInterimState::getLogInfo).toList())
                 .put("target_pawn_states", targetPawnStates.stream().map(PawnInterimState::getLogInfo).collect(Collectors.toList()))
                 .put("insight", insight)

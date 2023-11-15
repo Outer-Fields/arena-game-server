@@ -16,13 +16,15 @@ public class PawnResponse {
     public Set<ActionFlag> action_flags;
     public Map<StatType, Integer> stat_update;
     public List<EffectStats> effect_update;
+    public boolean is_dead;
     public int multi;
 
     public PawnResponse(PawnIndex pawn, List<ActionFlag> actionFlags, Map<StatType, Integer> statsUpdate,
-            List<EffectStats> effectUpdate) {
+            List<EffectStats> effectUpdate, boolean isDead) {
         this.pawn = pawn;
         this.stat_update = statsUpdate;
         this.effect_update = effectUpdate;
+        this.is_dead = isDead;
         if (actionFlags == null) {
             action_flags = Set.of();
             multi = 0;

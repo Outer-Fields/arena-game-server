@@ -1,11 +1,12 @@
 package io.mindspice.okragameserver.game.gameroom.gameutil;
 
 
+import io.mindspice.okragameserver.game.enums.ActionFlag;
 import io.mindspice.okragameserver.game.enums.ActionType;
 import io.mindspice.okragameserver.game.enums.StatType;
 
 import io.mindspice.okragameserver.game.gameroom.pawn.Pawn;
-
+import io.mindspice.okragameserver.game.gameroom.state.PawnInterimState;
 
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class DamageModifier {
         return (int) Math.round(damage * LuckModifier.luckMod(attackPawn.getStat(StatType.LP)));
     }
 
-    public static void defendDamage(Pawn defendPawn, ActionType actionType, Map<StatType, Integer> damageMap) {
+    public static void defendDamage(PawnInterimState defendPawn, ActionType actionType, Map<StatType, Integer> damageMap) {
         switch (actionType) {
             case MELEE -> defendDamageMelee(defendPawn, damageMap);
             case MAGIC -> defendDamageMagic(defendPawn, damageMap);
@@ -25,27 +26,28 @@ public class DamageModifier {
         }
     }
 
-    private static void defendDamageMelee(Pawn defendPawn, Map<StatType, Integer> damageMap) {
+    private static void defendDamageMelee(PawnInterimState defendPawn, Map<StatType, Integer> damageMap) {
         int currVal = damageMap.get(HP);
-        int defendDamage = (int) Math.round((double) (defendPawn.getStat(DP) / 8)
-                * LuckModifier.luckMod(defendPawn.getStat(StatType.LP)));
+        int defendDamage = (int) Math.round((double) (defendPawn.getPawn().getStat(DP) / 8)
+                * LuckModifier.luckMod(defendPawn.getPawn().getStat(StatType.LP)));
         damageMap.put(HP, Math.max((currVal - defendDamage), (damageMap.get(HP) / 2)));
     }
 
-    private static void defendDamageMagic(Pawn defendPawn, Map<StatType, Integer> damageMap) {
+    private static void defendDamageMagic(PawnInterimState defendPawn, Map<StatType, Integer> damageMap) {
         int currVal = damageMap.get(HP);
-        int defendDamage = (int) Math.round((double) (defendPawn.getStat(MP) / 8)
-                * LuckModifier.luckMod(defendPawn.getStat(StatType.LP)));
+        int defendDamage = (int) Math.round((double) (defendPawn.getPawn().getStat(MP) / 8)
+                * LuckModifier.luckMod(defendPawn.getPawn().getStat(StatType.LP)));
         damageMap.put(HP, Math.max((currVal - defendDamage), (damageMap.get(HP) / 2)));
     }
 
-    private static void defendDamageRanged(Pawn defendPawn, Map<StatType, Integer> damageMap) {
+    private static void defendDamageRanged(PawnInterimState defendPawn, Map<StatType, Integer> damageMap) {
         int currVal = damageMap.get(HP);
-        if (defendPawn.getStat(DP) <= 250) {
+        if (defendPawn.getPawn().getStat(DP) <= 250) {
+            defendPawn.addFlag(ActionFlag.DEFENSE_FAILED);
             return;
         }
-        int defendDamage = (int) Math.round((double) (defendPawn.getStat(DP) / 8)
-                * LuckModifier.luckMod(defendPawn.getStat(StatType.LP)));
+        int defendDamage = (int) Math.round((double) (defendPawn.getPawn().getStat(DP) / 8)
+                * LuckModifier.luckMod(defendPawn.getPawn().getStat(StatType.LP)));
         damageMap.put(HP, Math.max((currVal - defendDamage), (damageMap.get(HP) / 2)));
     }
 

@@ -1,7 +1,5 @@
 package io.mindspice.okragameserver.game.gameroom;
 
-import io.mindspice.mindlib.util.FuncUtils;
-import io.mindspice.mindlib.util.JsonUtils;
 import io.mindspice.okragameserver.core.Settings;
 import io.mindspice.okragameserver.game.enums.PawnIndex;
 import io.mindspice.okragameserver.game.gameroom.action.ActionReturn;
@@ -14,7 +12,6 @@ import io.mindspice.okragameserver.util.Log;
 import io.mindspice.okragameserver.util.gamelogger.GameLogger;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -44,7 +41,6 @@ public class NetCombatManager {
         assert (actionToPlay.playerPawnStates.get(0) != null);
 
         actionToPlay.doAction();
-
         sendTurnResponse(actionToPlay);
 
         if (actionToPlay.hasInsight) {
@@ -66,6 +62,7 @@ public class NetCombatManager {
 
         if (actionReturn.isInvalid) {
             playerResponse.is_invalid = true;
+            playerResponse.invalid_msg = actionReturn.invalidMsg.msg;
             playerResponse.action_pawn = actionReturn.playerPawnStates.get(0).getPawnIndex();
             send(playerResponse, true);
             return;
@@ -89,24 +86,27 @@ public class NetCombatManager {
         playerResponse.animation = actionReturn.animation;
         enemyResponse.animation = actionReturn.animation;
 
-        // To Player
+        // Players own pawns to self (full stats)
         var pPlayerAffected = actionReturn.playerPawnStates.stream()
                 .filter(p -> !p.getActionFlags().isEmpty())
                 .map(p -> new PawnResponse(
                                 p.getPawnIndex(),
                                 p.getActionFlags(),
                                 p.getPawn().getNetStats(),
-                                p.getPawn().getNetEffects()
+                                p.getPawn().getNetEffects(),
+                                p.getPawn().getAndFlagIfDead()
+
                         )
                 ).toList();
-
+        // Players stats to enemy (only HP)
         var pEnemyAffected = actionReturn.targetPawnStates.stream()
                 .filter(p -> !p.getActionFlags().isEmpty())
                 .map(p -> new PawnResponse(
                                 p.getPawnIndex(),
                                 p.getActionFlags(),
                                 p.getPawn().getHp(),
-                                p.getPawn().hasStatusInsight() ? p.getPawn().getNetEffects() : List.of()
+                                p.getPawn().hasStatusInsight() ? p.getPawn().getNetEffects() : List.of(),
+                                p.getPawn().getAndFlagIfDead()
                         )
                 ).toList();
 
@@ -120,27 +120,32 @@ public class NetCombatManager {
             send(enemyResponse, false);
             return;
         }
+
         playerResponse.affected_pawns_player = pPlayerAffected;
         playerResponse.affected_pawns_enemy = pEnemyAffected;
 
-        // To Enemy
+        // Enemies own pawns sent to them (full stats)
         var ePlayerAffected = actionReturn.targetPawnStates.stream()
                 .filter(p -> !p.getActionFlags().isEmpty())
                 .map(p -> new PawnResponse(
                                 p.getPawnIndex(),
                                 p.getActionFlags(),
                                 p.getPawn().getNetStats(),
-                                p.getPawn().getNetEffects()
+                                p.getPawn().getNetEffects(),
+                                p.getPawn().getAndFlagIfDead()
+
                         )
                 ).toList();
 
+        // Enemies pawns set to player (only hp)
         var eEnemyAffected = actionReturn.playerPawnStates.stream()
                 .filter(p -> !p.getActionFlags().isEmpty())
                 .map(p -> new PawnResponse(
                                 p.getPawnIndex(),
                                 p.getActionFlags(),
                                 p.getPawn().getHp(),
-                                p.getPawn().hasStatusInsight() ? p.getPawn().getNetEffects() : List.of()
+                                p.getPawn().hasStatusInsight() ? p.getPawn().getNetEffects() : List.of(),
+                                p.getPawn().getAndFlagIfDead()
                         )
                 ).toList();
         enemyResponse.affected_pawns_player = ePlayerAffected;
@@ -183,15 +188,6 @@ public class NetCombatManager {
         if (!playerEffects.isEmpty()) { send(playerEffects, true); }
         if (!enemyEffects.isEmpty()) { send(enemyEffects, true); }
 
-//        var eEffectsSelf = new NetEffect(false);
-//        var eEffectsEnemy = new NetEffect(true);
-//        enemyPawns.forEach(e -> {
-//                    eEffectsSelf.setEffects(e.getIndex(), e.getNetEffects());
-//                    if (e.hasStatusInsight()) { eEffectsEnemy.setEffects(e.getIndex(), e.getNetEffects()); }
-//                }
-//        );
-//        if (!eEffectsSelf.isEmpty()) { send(eEffectsSelf, false); }
-//        if (!eEffectsEnemy.isEmpty()) { send(eEffectsEnemy, true); }
     }
 
     public void sendStats(List<Pawn> playerPawns) {
@@ -199,13 +195,11 @@ public class NetCombatManager {
         var toEnemy = new NetStat(false);
 
         for (var pawn : playerPawns) {
-            if (pawn.hasStatsChanged()) {
-                toPlayer.setStats(pawn.getIndex(), pawn.getNetStats());
-                toEnemy.setStats(pawn.getIndex(), pawn.getHp());
-            }
+            toPlayer.setStats(pawn.getIndex(), pawn.getNetStats());
+            toEnemy.setStats(pawn.getIndex(), pawn.getHp());
         }
-        if (!toPlayer.isEmpty()) { send(toPlayer, true); }
-        if (!toEnemy.isEmpty()) { send(toEnemy, false); }
+        send(toPlayer, true);
+        send(toEnemy, false);
     }
 
     // Called only on first round init called once independently on each player
@@ -244,7 +238,6 @@ public class NetCombatManager {
     // Also used to send stat and effects updates to both players, as they can/do change at turn start
     public void sendTurnUpdate(List<PawnIndex> activePawns, boolean isPlayersTurn) {
         var turnUpdate = new NetTurnUpdate(isPlayersTurn);
-        var pawns = player.getPawns();
 
         if (isPlayersTurn) {
             activePawns.forEach(p -> turnUpdate.setActive(p, true));
@@ -252,7 +245,7 @@ public class NetCombatManager {
 
         sendDead();
         sendEffects();
-        sendStats(pawns);
+        sendStats(player.getPawns());
         send(turnUpdate, true);
     }
 

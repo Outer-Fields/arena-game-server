@@ -2,20 +2,15 @@ package io.mindspice.okragameserver;
 
 import io.mindspice.okragameserver.core.Settings;
 import io.mindspice.okragameserver.game.cards.*;
-import io.mindspice.okragameserver.game.enums.ActionClass;
 import io.mindspice.okragameserver.game.enums.EffectType;
 import io.mindspice.okragameserver.game.enums.PawnIndex;
-import io.mindspice.okragameserver.game.enums.PlayerAction;
 import io.mindspice.okragameserver.game.gameroom.action.ActionReturn;
-import io.mindspice.okragameserver.game.gameroom.effect.Effect;
 import io.mindspice.okragameserver.game.gameroom.pawn.Pawn;
 import io.mindspice.okragameserver.game.gameroom.state.ActiveTurnState;
 import io.mindspice.okragameserver.game.gameroom.state.PawnInterimState;
-import io.mindspice.okragameserver.schema.websocket.incoming.NetGameAction;
 import io.mindspice.okragameserver.testutil.States;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,7 +96,7 @@ public class Random {
             System.out.println("ar2");
             System.out.println(ar2.isInvalid);
             System.out.println(player1.getPawn(PawnIndex.PAWN1).getStatsMap());
-            System.out.println(ar2.msg);
+            System.out.println(ar2.invalidMsg);
            // turnState.doAction(new NetGameAction(PlayerAction.ABILITY_CARD_1, PawnIndex.PAWN1, PawnIndex.PAWN2));
         }
     }

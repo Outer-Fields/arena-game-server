@@ -21,6 +21,7 @@ public class NetTurnResponse extends NetMsg {
     public Map<StatType, Integer> cost;
     public Animation animation;
     public PlayerAction card_slot;
+    public String invalid_msg;
 
 
     public NetTurnResponse(boolean isPlayer) {

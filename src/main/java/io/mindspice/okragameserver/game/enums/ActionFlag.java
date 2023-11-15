@@ -19,6 +19,7 @@ public enum ActionFlag {
     CONFUSED(0),
     PARALYZED(0),
     SHIELDED(0),
+    DEFENSE_FAILED(0),
     CURE(1),
     BUFF(1),
     CURSED(1);

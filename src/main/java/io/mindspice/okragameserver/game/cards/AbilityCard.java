@@ -199,7 +199,7 @@ public enum AbilityCard implements Card {
             PowerCard pCard = playerPawn.getPowerCard();
             PowerCard tCard = targetPawn.getPowerCard();
             if (tCard.level - pCard.level > 1) {
-                return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg.LVL_CONSTRAINT, getName());
+                return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg.LEVEL_CONSTRAINT, getName());
             }
             playerPawn.setPowerCard(tCard);
             targetPawn.setPowerCard(pCard);

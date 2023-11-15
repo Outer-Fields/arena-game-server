@@ -14,10 +14,8 @@ import java.util.Map;
 public record PawnRecord(
         @JsonProperty("pawn_index") PawnIndex pawnIndex,
         @JsonProperty("stats") Map<StatType, Integer> stats,
-        @JsonProperty("stat_hash") int statHash,
         @JsonProperty("stats_max") Map<StatType, Integer> statsMax,
         @JsonProperty("effects") List<EffectRecord> effects,
-        @JsonProperty("effects_hash") int effectHash,
         @JsonProperty("active_powers") List<PowerRecord> activePowers,
         @JsonProperty("pawn_card") PawnCard pawnCard,
         @JsonProperty("power_card") PowerCard powerCard,

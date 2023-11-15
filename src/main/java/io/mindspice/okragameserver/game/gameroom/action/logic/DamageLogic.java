@@ -11,25 +11,20 @@ import java.util.Map;
 
 public class DamageLogic {
 
-
-
-    private DamageLogic() {}
-
-
+    private DamageLogic() { }
 
     public static class Basic implements IDamage {
 
         public static final Basic GET = new Basic();
 
-        private Basic() {}
+        private Basic() { }
 
         @Override
         public void doDamage(PawnInterimState player, PawnInterimState target, ActionType actionType,
-                             SpecialAction special, Map<StatType, Integer> damage, boolean isSelf) {
+                SpecialAction special, Map<StatType, Integer> damage, boolean isSelf) {
 
             Pawn playerPawn = player.getPawn();
             Pawn targetPawn = target.getPawn();
-
 
             var enemyPowerMod = targetPawn.getPowerAction(false, actionType);
             //If enemy resists exit, and ~null damage~ skip damage
@@ -48,7 +43,6 @@ public class DamageLogic {
             boolean isIgnoreDefense = (actionType != ActionType.MAGIC && special == SpecialAction.IGNORE_DP)
                     || (actionType == ActionType.MAGIC && special == SpecialAction.IGNORE_MP);
 
-
             // If enemy reflects, assign damage to player if not resisted, if resisted return, else continue defense calc
             // First if check is to make sure self damage isn't reflected
             if ((!isSelf) && enemyPowerMod.containsKey(PowerEnums.PowerReturn.REFLECT)) {
@@ -59,6 +53,12 @@ public class DamageLogic {
                     player.addFlag(ActionFlag.RESISTED);
                     return;
                 }
+
+                if (enemyPowerMod.containsKey(PowerEnums.PowerReturn.DOUBLE)) {
+                    Utils.scaleDamageMap(damage, 2);
+                    target.addFlag(ActionFlag._2X);
+                }
+
                 // scale if shield
                 if (playerPowerDefense.containsKey(PowerEnums.PowerReturn.SHIELD)) {
                     Utils.scaleDamageMap(damage, playerPowerDefense.get(PowerEnums.PowerReturn.SHIELD));
@@ -66,6 +66,8 @@ public class DamageLogic {
                 // Defend if no ignore special
                 if (!isIgnoreDefense) {
                     DamageModifier.defendDamage(playerPawn, actionType, damage);
+                } else {
+                    player.addFlag(ActionFlag.DEFENSE_FAILED);
                 }
 
                 player.addDamage(damage);
@@ -73,6 +75,13 @@ public class DamageLogic {
                 return;
             } else { // Calc enemy defenses and assign damage if not reflected.
                 //calculate enemies defenses
+
+                // double if player has successful double power
+                if (playerPowerMod.containsKey(PowerEnums.PowerReturn.DOUBLE)) {
+                    Utils.scaleDamageMap(damage, 2);
+                    target.addFlag(ActionFlag._2X);
+                }
+
                 if (enemyPowerMod.containsKey(PowerEnums.PowerReturn.SHIELD)) {
                     Utils.scaleDamageMap(damage, enemyPowerMod.get(PowerEnums.PowerReturn.SHIELD));
                 }
@@ -80,13 +89,10 @@ public class DamageLogic {
                 // Defend if no ignore special
                 if (!isIgnoreDefense) {
                     DamageModifier.defendDamage(targetPawn, actionType, damage);
+                } else {
+                    target.addFlag(ActionFlag.DEFENSE_FAILED);
                 }
 
-                // double if player has successful double power
-                if (playerPowerMod.containsKey(PowerEnums.PowerReturn.DOUBLE)) {
-                    Utils.scaleDamageMap(damage, 2);
-                    target.addFlag(ActionFlag._2X);
-                }
                 target.addDamage(damage); //assign damage and return
                 target.addFlag(ActionFlag.DAMAGED);
             }

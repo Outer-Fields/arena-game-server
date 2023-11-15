@@ -169,7 +169,6 @@ public class DamageCalc {
                         playerState == playerPawnStates.get(0) ? selfDamage.chance : selfDamage.altChance
                 );
                 if (LuckModifier.inverseChanceCalc(alignmentChance, playerState.getPawn().getStat(LP))) {
-
                     // Calculate Scale, checks if main target, if so scalar, else alt scalar
                     var scalar = 0.0;
                     if (playerState == playerPawnStates.get(0)) {
