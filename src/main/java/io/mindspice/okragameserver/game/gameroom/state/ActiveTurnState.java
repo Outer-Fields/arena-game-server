@@ -2,6 +2,7 @@ package io.mindspice.okragameserver.game.gameroom.state;
 
 import io.mindspice.okragameserver.game.enums.EffectType;
 import io.mindspice.okragameserver.game.enums.PawnIndex;
+import io.mindspice.okragameserver.game.enums.PlayerAction;
 import io.mindspice.okragameserver.game.gameroom.action.ActionFactory;
 import io.mindspice.okragameserver.game.gameroom.action.ActionReturn;
 import io.mindspice.okragameserver.game.gameroom.effect.ActiveEffect;
@@ -95,16 +96,23 @@ public class ActiveTurnState {
      * Before an action is performed these methods first check if the pawn is active, then check if action is valid/allowed
      */
     public void doAction(NetGameAction nga) {
+
+        if (isTurnOver()) {
+            Log.SERVER.debug(this.getClass(), "PlayerId: " + getActivePlayerId() + " | Action sent after turn end");
+            return;
+        }
+
+        if (nga.action() == PlayerAction.END_TURN) { // Handle before valid turn check, as playing pawn doesnt matter
+            pawnTurnStates.forEach(p -> p.setActive(false));
+            return;
+        }
+
         if (!isValidTurn(nga.playerPawn())) {
             Log.ABUSE.info("PlayerId: " + getActivePlayerId() + " | Attempted to player action from non-active pawn");
             Log.SERVER.debug(this.getClass(), "PlayerId: " + getActivePlayerId() + " | Attempted to player action from non-active pawn");
             return;
         }
 
-        if (isTurnOver()) {
-            Log.SERVER.debug(this.getClass(), "PlayerId: " + getActivePlayerId() + " | Action sent after turn end");
-            return;
-        }
 
         lastActionTime = Instant.now().getEpochSecond();
         ActionReturn actionReturn = null;
@@ -118,10 +126,6 @@ public class ActiveTurnState {
             // case POTION -> actionReturn = actionFactory.consumePotion(nga.player_pawn, nga.potionCard);
             case SKIP_PAWN -> {
                 disablePawn(nga.playerPawn());
-                return;
-            }
-            case END_TURN -> {
-                pawnTurnStates.forEach(p -> p.setActive(false));
                 return;
             }
         }

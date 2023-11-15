@@ -34,70 +34,45 @@ public class ActivePower {
     }
 
     public EnumMap<PowerEnums.PowerReturn, Double> getActionDefense(ActionType actionType, int luck) {
-
         EnumMap<PowerEnums.PowerReturn, Double> returnMap = new EnumMap<>(PowerEnums.PowerReturn.class);
         var rtn = type.getDamageDefense(actionType);
         if (rtn == FALSE) {
-            returnMap.put(rtn, 0.0);
             return returnMap;
         }
 
-        switch (rtn) {
-            case RESIST, REFLECT -> {
-                if (LuckModifier.chanceCalc(chance, luck)) {
-                    returnMap.put(rtn, 999.9);
-                }
-            }
-            case SHIELD -> {
-                double inverseScalar = 1 - scalar;
-                returnMap.put(rtn, inverseScalar);
-            }
+        if (LuckModifier.chanceCalc(chance, luck)) {
+            returnMap.put(rtn, scalar);
         }
         return returnMap;
     }
 
     public EnumMap<PowerEnums.PowerReturn, Double> getActionOffense(ActionType actionType, int luck) {
-
         EnumMap<PowerEnums.PowerReturn, Double> returnMap = new EnumMap<>(PowerEnums.PowerReturn.class);
-
         var rtn = type.getOffense(actionType);
         if (rtn == FALSE) {
-            //         returnMap.put(rtn, 0.0);
             return returnMap;
         }
-        switch (rtn) {
-            // TODO maybe use luck to scale buff?
-            case BUFF -> returnMap.put(rtn, scalar);
-            case DOUBLE -> {
-                if (LuckModifier.chanceCalc(chance, luck)) {
-                    returnMap.put(rtn, 999.9);
-                }
-            }
+        if (LuckModifier.chanceCalc(chance, luck)) {
+            returnMap.put(rtn, scalar);
         }
         return returnMap;
     }
 
     public EnumMap<PowerEnums.PowerReturn, Double> getEffectDefense(EffectType effectType, int luck) {
-
         EnumMap<PowerEnums.PowerReturn, Double> returnMap = new EnumMap<>(PowerEnums.PowerReturn.class);
         var rtn = type.getEffectDefense(effectType);
         if (rtn == FALSE) {
-            returnMap.put(rtn, 0.0);
             return returnMap;
         }
-
-        switch (rtn) {
-            case RESIST, REFLECT -> {
-                if (LuckModifier.chanceCalc(chance, luck)) {
-                    returnMap.put(rtn, 999.9);
-                }
-            }
+        if (LuckModifier.chanceCalc(chance, luck)) {
+            returnMap.put(rtn, scalar);
         }
+
         return returnMap;
     }
 
     public double getLuckMod() {
-        if (this.type != PowerEnums.PowerType.INCREASE_LUCK) return 0;
+        if (this.type != PowerEnums.PowerType.INCREASE_LUCK) { return 0; }
         return scalar;
     }
 

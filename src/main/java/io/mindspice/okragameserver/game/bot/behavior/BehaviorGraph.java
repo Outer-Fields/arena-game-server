@@ -133,6 +133,7 @@ public class BehaviorGraph {
                     .stepBack()
                 .addSibling(random)
                     .addLeaf(doRandom)
+                .addLeaf(doNothing)
                 .build();
     }
     // @formatter:on

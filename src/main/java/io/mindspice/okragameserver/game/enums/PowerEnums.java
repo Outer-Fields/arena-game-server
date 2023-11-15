@@ -88,11 +88,10 @@ public class PowerEnums {
                 return PowerReturn.RESIST;
             }
             else if (this == REFLECTION) {
-
                 if (action == ActionType.MAGIC) {
                     return PowerReturn.REFLECT;
                 } else {
-                    return FALSE;
+                    return PowerReturn.FALSE;
                 }
             } else {
                 return PowerReturn.FALSE;
@@ -109,6 +108,9 @@ public class PowerEnums {
             else if (this == REFLECTION) {
                 return PowerReturn.REFLECT;
             }
+            else if (this == SHIELD_MAGIC) {
+                return PowerReturn.SHIELD;
+            }
             else if(this == RESIST_DEBUFF) {
                 EffectType[] effectTypeTypes = {
                         EffectType.DE_INVIGORATE,
@@ -124,7 +126,6 @@ public class PowerEnums {
                 }
                 return PowerReturn.FALSE;
             }
-
             else if (this == RESIST_INSIGHT) {
                 EffectType[] insightType = {
                         EffectType.INSIGHT_STATUS,

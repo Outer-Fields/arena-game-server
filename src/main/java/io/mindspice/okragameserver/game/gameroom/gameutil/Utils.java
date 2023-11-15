@@ -14,6 +14,7 @@ import static io.mindspice.okragameserver.game.enums.GameConst.*;
 
 public class Utils {
 
+    // FIXME
     public static void scaleDamageMap(Map<StatType, Integer> damageMap, double scalar) {
         damageMap.forEach((key, value) -> {
             damageMap.put(key, (int) (value * scalar));

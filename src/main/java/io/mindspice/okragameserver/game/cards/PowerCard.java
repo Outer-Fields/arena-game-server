@@ -18,34 +18,34 @@ import java.util.List;
 public enum PowerCard implements Card {
     STONE_WALL(CollectionSet.ORIGINS, 2,
             new Power[]{
-                    new Power(PowerEnums.PowerType.SHIELD_MELEE, .1, 1),
-                    new Power(PowerEnums.PowerType.SHIELD_RANGED, .1, 1)
+                    new Power(PowerEnums.PowerType.SHIELD_MELEE, 0.90, 1),
+                    new Power(PowerEnums.PowerType.SHIELD_RANGED, 0.90, 1)
             },
             "Imparts light resistance to both melee and ranged attacks."
     ),
     IMPRENETRATION(CollectionSet.ORIGINS,2,
             new Power[]{
-                    new Power(PowerEnums.PowerType.SHIELD_RANGED, .2, 1)
+                    new Power(PowerEnums.PowerType.SHIELD_RANGED, 0.80, 1)
             },
             "Imparts moderate resistance to ranged attacks."
     ),
     BLADE_BANE(CollectionSet.ORIGINS,2,
             new Power[]{
-                    new Power(PowerEnums.PowerType.SHIELD_MELEE, .2, 1)
+                    new Power(PowerEnums.PowerType.SHIELD_MELEE, 0.80, 1)
             },
             "Imparts moderate resistance to melee attacks."
     ),
     CELESTIAL_SHIELD(CollectionSet.ORIGINS,2,
             new Power[]{
-                    new Power(PowerEnums.PowerType.SHIELD_MELEE, .2, 1)
+                    new Power(PowerEnums.PowerType.SHIELD_MELEE, 0.80, 1)
             },
             "Imparts moderate resistance to magic based damage attacks."
     ),
     WARRIORS_BLESSING(CollectionSet.ORIGINS,2,
             new Power[]{
-                    new Power(PowerEnums.PowerType.SHIELD_MELEE, .07, 1),
-                    new Power(PowerEnums.PowerType.SHIELD_MAGIC, .07, 1),
-                    new Power(PowerEnums.PowerType.SHIELD_RANGED, .07, 1),
+                    new Power(PowerEnums.PowerType.SHIELD_MELEE, 0.93, 1),
+                    new Power(PowerEnums.PowerType.SHIELD_MAGIC, 0.93, 1),
+                    new Power(PowerEnums.PowerType.SHIELD_RANGED, 0.93, 1),
             },
             "Imparts very light resistance to all attacks."
     ),
@@ -107,7 +107,7 @@ public enum PowerCard implements Card {
             },
             "Imparts moderate resistance to de buffs."
     ),
-    DOUBLER(CollectionSet.ORIGINS,3,
+    DOUBLER(CollectionSet.ORIGINS,4,
             new Power[]{
                     new Power(PowerEnums.PowerType.DOUBLE, 1, .2),
             },

@@ -10,10 +10,15 @@ public enum ActionFlag {
     _2X(1),
     DAMAGED(1),
     EFFECTED(1),
+    DE_BUFF(1),
+    DRAIN(1),
+    SIPHON(1),
     SUCCESS(1), //returns for effects
+    HEAL(1),
     UNSUCCESSFUL(0),
     CONFUSED(0),
     PARALYZED(0),
+    SHIELDED(0),
     CURE(1),
     BUFF(1),
     CURSED(1);
