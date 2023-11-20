@@ -101,6 +101,10 @@ public class PawnInterimState {
         actionFlags.removeIf(p -> p == ActionFlag.EFFECTED);
     }
 
+    public void nullFlags() {
+        actionFlags.clear();
+    }
+
     public void addFlag(ActionFlag flag) {
         actionFlags.add(flag);
     }

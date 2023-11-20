@@ -62,13 +62,12 @@ public class NetCombatManager {
 
         if (actionReturn.isInvalid) {
             playerResponse.is_invalid = true;
-            playerResponse.invalid_msg = actionReturn.invalidMsg.msg;
+            playerResponse.invalid_msg = actionReturn.invalidMsg;
             playerResponse.action_pawn = actionReturn.playerPawnStates.get(0).getPawnIndex();
             send(playerResponse, true);
             return;
         }
 
-        playerResponse.cost = actionReturn.cost;
 
         if (actionReturn.isFailed) {
             playerResponse.is_failed = true;
@@ -109,6 +108,12 @@ public class NetCombatManager {
                                 p.getPawn().getAndFlagIfDead()
                         )
                 ).toList();
+
+        // Only send cost if player doesn't damage themselves, as cost decrements client side stats and will conflict
+        if (!pEnemyAffected.stream().map(p -> p.pawn).toList()
+                .contains(actionReturn.playerPawnStates.get(0).getPawnIndex())) {
+            playerResponse.cost = actionReturn.cost;
+        }
 
         // If there are no affected(flagged) pawns then action failed due to luck
         if (pPlayerAffected.isEmpty() && pEnemyAffected.isEmpty()) {

@@ -20,7 +20,7 @@ public class ActionFactory {
     public ActionReturn playActionCard1(PawnIndex playerIndex, PawnIndex targetIndex) {
         ActionCard card = player.getPawn(playerIndex).getActionCard(1);
         if (card == null) {
-            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg.NULL, "NULL");
+            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg._INVALID_CARD, "NULL");
         }
         var actionReturn = card.playCard(player, enemy, playerIndex, targetIndex);
         if (!actionReturn.isInvalid) { player.getPawn(playerIndex).removeActionCard(1); }
@@ -30,7 +30,7 @@ public class ActionFactory {
     public ActionReturn playActionCard2(PawnIndex playerIndex, PawnIndex targetIndex) {
         ActionCard card = player.getPawn(playerIndex).getActionCard(2);
         if (card == null) {
-            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg.NULL, "NULL");
+            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg._INVALID_CARD, "NULL");
         }
         var actionReturn = card.playCard(player, enemy, playerIndex, targetIndex);
         if (!actionReturn.isInvalid) { player.getPawn(playerIndex).removeActionCard(2); }
@@ -40,7 +40,7 @@ public class ActionFactory {
     public ActionReturn playAbilityCard1(PawnIndex playerIndex, PawnIndex targetIndex) {
         AbilityCard card = player.getPawn(playerIndex).getAbilityCard(1);
         if (card == null) {
-            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg.NULL, "NULL");
+            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg._INVALID_CARD, "NULL");
         }
         var actionReturn = card.playCard(player, enemy, playerIndex, targetIndex);
         if (!actionReturn.isInvalid) { player.getPawn(playerIndex).removeAbilityCard(1); }
@@ -50,7 +50,7 @@ public class ActionFactory {
     public ActionReturn playAbilityCard2(PawnIndex playerIndex, PawnIndex targetIndex) {
         AbilityCard card = player.getPawn(playerIndex).getAbilityCard(2);
         if (card == null) {
-            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg.NULL, "NULL");
+            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg._INVALID_CARD, "NULL");
         }
         var actionReturn = card.playCard(player, enemy, playerIndex, targetIndex);
         if (!actionReturn.isInvalid) { player.getPawn(playerIndex).removeAbilityCard(2); }
@@ -60,7 +60,7 @@ public class ActionFactory {
     public ActionReturn attackWeapon1(PawnIndex playerIndex, PawnIndex targetIndex) {
         WeaponCard card = player.getPawn(playerIndex).getWeaponCard(1);
         if (card == null) {
-            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg.NULL, "NULL");
+            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg._INVALID_CARD, "NULL");
         }
         return card.playCard(player, enemy, playerIndex, targetIndex);
     }
@@ -68,7 +68,7 @@ public class ActionFactory {
     public ActionReturn attackWeapon2(PawnIndex playerIndex, PawnIndex targetIndex) {
         WeaponCard card = player.getPawn(playerIndex).getWeaponCard(2);
         if (card == null) {
-            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg.NULL, "NULL");
+            return ActionReturn.getInvalid(player.getPawn(playerIndex), InvalidMsg._INVALID_CARD, "NULL");
         }
         return card.playCard(player, enemy, playerIndex, targetIndex);
     }

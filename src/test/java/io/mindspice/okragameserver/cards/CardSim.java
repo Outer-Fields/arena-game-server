@@ -306,12 +306,12 @@ public class CardSim {
                 for (var align2 : Alignment.values()) {
                     inc++;
                     var states = getFreshStates();
-                    states[0].getPawn(PawnIndex.PAWN1).setAlignment( pAlignOverride == null ? align1 : pAlignOverride);
-                    states[1].getPawn(PawnIndex.PAWN1).setAlignment(tAlignOverride == null ? align2 : tAlignOverride);
-                    states[0].getPawn(PawnIndex.PAWN2).setAlignment( pAlignOverride == null ? align2 : pAlignOverride);
-                    states[1].getPawn(PawnIndex.PAWN2).setAlignment(tAlignOverride == null ? align1 : tAlignOverride);
-                    states[0].getPawn(PawnIndex.PAWN3).setAlignment( pAlignOverride == null ? align1 : pAlignOverride);
-                    states[1].getPawn(PawnIndex.PAWN3).setAlignment(tAlignOverride == null ? align2 : tAlignOverride);
+//                    states[0].getPawn(PawnIndex.PAWN1).setAlignment( pAlignOverride == null ? align1 : pAlignOverride);
+//                    states[1].getPawn(PawnIndex.PAWN1).setAlignment(tAlignOverride == null ? align2 : tAlignOverride);
+//                    states[0].getPawn(PawnIndex.PAWN2).setAlignment( pAlignOverride == null ? align2 : pAlignOverride);
+//                    states[1].getPawn(PawnIndex.PAWN2).setAlignment(tAlignOverride == null ? align1 : tAlignOverride);
+//                    states[0].getPawn(PawnIndex.PAWN3).setAlignment( pAlignOverride == null ? align1 : pAlignOverride);
+//                    states[1].getPawn(PawnIndex.PAWN3).setAlignment(tAlignOverride == null ? align2 : tAlignOverride);
 
                     costMap = card.getStats().getCost().asMap();
                     var actionReturn = card.playCard(states[0], states[1], PawnIndex.PAWN1, PawnIndex.PAWN1);

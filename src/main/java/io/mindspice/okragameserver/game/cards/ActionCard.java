@@ -1195,7 +1195,7 @@ public enum ActionCard implements Card {
             ActionReturn actionReturn = getSequentialActionReturn(player, playerIdx, target, targetIdx, getStats().getAnimation());
             // Do Cost, aborts if player can't afford;
                if (!getStats().getCostLogic().doCost(player.getPawn(playerIdx), getStats().getCost().asMap(), actionReturn)) {
-                return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg.COST, getName());
+                return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg._INVALID_COST, getName());
             }
             getStats().getDamageCalc().doDamage(getStats().getDamageLogic(), actionReturn.playerPawnStates,
                                                 actionReturn.targetPawnStates, this, getStats().getSpecial());
@@ -1225,7 +1225,7 @@ public enum ActionCard implements Card {
             ActionReturn actionReturn = getSequentialActionReturn(player, playerIdx, target, targetIdx, getStats().getAnimation());
             // Do Cost, aborts if player can't afford;
                if (!getStats().getCostLogic().doCost(player.getPawn(playerIdx), getStats().getCost().asMap(), actionReturn)) {
-                return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg.COST, getName());
+                return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg._INVALID_COST, getName());
             }
 
             getStats().getDamageCalc().doDamage(getStats().getDamageLogic(), actionReturn.playerPawnStates,

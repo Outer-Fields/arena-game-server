@@ -1,15 +1,13 @@
 package io.mindspice.okragameserver.game.enums;
 
 public enum InvalidMsg {
-    COST("Stat(s) Lower Than Cost"),
-    NULL("Card Not Held"),
-    HP_CONSTRAINT("HP Constraint Not Met"),
-    LEVEL_CONSTRAINT("Level Constraint Not Met"),
-    TYPE_CONSTRAINT("Swap Must Be same Action Type"),
-    CONSTRAINT("Card Constraint Not Met"),
-    P_EMPTY("Player Slot Empty"),
-    E_EMPTY("Enemy Slot Empty");
-    public final String msg;
+    _INVALID_COST,
+    _INVALID_CARD,
+    _INVALID_CONSTRAINT_HP,
+    _INVALID_CONSTRAINT_LEVEL,
+    _INVALID_CONSTRAINT_TYPE,
+    _INVALID_CONSTRAINT,
+    _INVALID_P_CARD,
+    _INVALID_E_CARD,
 
-    InvalidMsg(String msg) { this.msg = msg; }
 }

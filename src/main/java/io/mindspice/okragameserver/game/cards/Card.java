@@ -33,7 +33,7 @@ public interface Card {
 
         // Do Cost, abort if player can't afford, shouldn't happen unless player is doing abuse
         if (!stats.getCostLogic().doCost(player.getPawn(playerIdx), stats.getCost().asMap(), actionReturn)) {
-            return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg.COST, getName());
+            return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg._INVALID_COST, getName());
         }
 
         if (stats.hasDamage()) {

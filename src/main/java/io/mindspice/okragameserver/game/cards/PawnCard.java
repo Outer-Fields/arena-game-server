@@ -52,7 +52,6 @@ public enum PawnCard {
                     entry(MP, 400),
                     entry(WP, 4),
                     entry(LP, 10))),
-
             //StatMax
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(HP, 3200),
@@ -61,6 +60,7 @@ public enum PawnCard {
                     entry(MP, 500),
                     entry(WP, 6),
                     entry(LP, 20))),
+            //Regen
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(HP, 20),
                     entry(DP, 0),
@@ -77,7 +77,6 @@ public enum PawnCard {
                     entry(MP, 750),
                     entry(WP, 3),
                     entry(LP, 10))),
-
             //StatMax
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(HP, 3200),
@@ -86,6 +85,7 @@ public enum PawnCard {
                     entry(MP, 900),
                     entry(WP, 8),
                     entry(LP, 20))),
+            //Regen
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(HP, 25),
                     entry(DP, 0),
@@ -102,7 +102,6 @@ public enum PawnCard {
                     entry(MP, 400),
                     entry(WP, 4),
                     entry(LP, 12))),
-
             //StatMax
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(HP, 3000),
@@ -111,6 +110,7 @@ public enum PawnCard {
                     entry(MP, 600),
                     entry(WP, 8),
                     entry(LP, 20))),
+            //Regen
             new EnumMap<StatType, Integer>(Map.ofEntries(
                     entry(HP, 20),
                     entry(DP, 0),

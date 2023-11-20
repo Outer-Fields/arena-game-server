@@ -170,7 +170,7 @@ public class Pawn {
     }
 
     public boolean getAndFlagIfDead() {
-        if (isDead) {
+        if (isDead()) {
             sentDead = true;
             return true;
         }

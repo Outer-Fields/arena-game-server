@@ -1,9 +1,6 @@
 package io.mindspice.okragameserver.schema.websocket.outgoing.game;
 
-import io.mindspice.okragameserver.game.enums.Animation;
-import io.mindspice.okragameserver.game.enums.PawnIndex;
-import io.mindspice.okragameserver.game.enums.PlayerAction;
-import io.mindspice.okragameserver.game.enums.StatType;
+import io.mindspice.okragameserver.game.enums.*;
 import io.mindspice.okragameserver.schema.websocket.outgoing.NetMsg;
 import io.mindspice.okragameserver.schema.websocket.outgoing.OutMsgType;
 
@@ -21,7 +18,7 @@ public class NetTurnResponse extends NetMsg {
     public Map<StatType, Integer> cost;
     public Animation animation;
     public PlayerAction card_slot;
-    public String invalid_msg;
+    public InvalidMsg invalid_msg;
 
 
     public NetTurnResponse(boolean isPlayer) {

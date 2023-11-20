@@ -43,7 +43,7 @@ public class DamageModifier {
     private static void defendDamageRanged(PawnInterimState defendPawn, Map<StatType, Integer> damageMap) {
         int currVal = damageMap.get(HP);
         if (defendPawn.getPawn().getStat(DP) <= 250) {
-            defendPawn.addFlag(ActionFlag.DEFENSE_FAILED);
+            defendPawn.addFlag(ActionFlag.VITAL_HIT);
             return;
         }
         int defendDamage = (int) Math.round((double) (defendPawn.getPawn().getStat(DP) / 8)

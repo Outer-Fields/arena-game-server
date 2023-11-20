@@ -97,7 +97,7 @@ public class ActiveEffect {
     }
 
     // returns if pawn should be active/confused/paralyzed
-    public  boolean doEffect() {
+    public boolean doEffect() {
         haveDoneFirst = true;
         switch (effectType) {
             case POISON -> {
@@ -156,7 +156,6 @@ public class ActiveEffect {
     }
 
     public void subtractAmount(double amount) {
-        System.out.println("Modified Effect AMount");
         if (effectType.effectClass == EffectType.EffectClass.MODIFIER) {
             endStat();
             this.amount -= amount;
@@ -189,12 +188,10 @@ public class ActiveEffect {
     private void endStat() {
         if (effectType.isNegative) {
             affectedPawn.updateStat(effectType.statType, (int) amount, true);
-            affectedPawn.updateStatMax(effectType.statType, (int) amount, true);
+            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.25), true);
         } else {
-            if (effectType.statType != HP) {
-                affectedPawn.updateStat(effectType.statType, (int) amount, false);
-            }
-            affectedPawn.updateStatMax(effectType.statType, (int) amount, false);
+            affectedPawn.updateStat(effectType.statType, (int) amount, false);
+            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.25), false);
         }
     }
 

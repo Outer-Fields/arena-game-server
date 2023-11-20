@@ -98,8 +98,17 @@ public class ActionReturn {
         playerState.addFlag(ActionFlag.PARALYZED);
        // isFailed = true;
         for (var eis : targetPawnStates) {
+            eis.nullFlags();
             eis.nullEffects();
             eis.nullDamage();
+        }
+        if (playerPawnStates.size() > 1) {
+            for (int i =1; i < playerPawnStates.size(); ++i) {
+                var pis = playerPawnStates.get(i);
+                pis.nullFlags();
+                pis.nullEffects();
+                pis.nullDamage();
+            }
         }
     }
 

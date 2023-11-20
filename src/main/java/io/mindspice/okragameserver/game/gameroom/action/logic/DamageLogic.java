@@ -65,9 +65,9 @@ public class DamageLogic {
                 }
                 // Defend if no ignore special
                 if (!isIgnoreDefense) {
-                    DamageModifier.defendDamage(playerPawn, actionType, damage);
+                    DamageModifier.defendDamage(player, actionType, damage);
                 } else {
-                    player.addFlag(ActionFlag.DEFENSE_FAILED);
+                    player.addFlag(ActionFlag.VITAL_HIT);
                 }
 
                 player.addDamage(damage);
@@ -88,9 +88,9 @@ public class DamageLogic {
 
                 // Defend if no ignore special
                 if (!isIgnoreDefense) {
-                    DamageModifier.defendDamage(targetPawn, actionType, damage);
+                    DamageModifier.defendDamage(target, actionType, damage);
                 } else {
-                    target.addFlag(ActionFlag.DEFENSE_FAILED);
+                    target.addFlag(ActionFlag.VITAL_HIT);
                 }
 
                 target.addDamage(damage); //assign damage and return
