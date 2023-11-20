@@ -4,7 +4,6 @@ import io.mindspice.okragameserver.game.enums.*;
 import io.mindspice.okragameserver.schema.websocket.outgoing.NetMsg;
 import io.mindspice.okragameserver.schema.websocket.outgoing.OutMsgType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class NetTurnResponse extends NetMsg {
     public List<PawnResponse> affected_pawns_player;
     public List<PawnResponse> affected_pawns_enemy;
     public Map<StatType, Integer> cost;
-    public Animation animation;
+    public String animation;
     public PlayerAction card_slot;
     public InvalidMsg invalid_msg;
 

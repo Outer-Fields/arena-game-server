@@ -1,7 +1,6 @@
 package io.mindspice.okragameserver.game.cards;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.mindspice.okragameserver.game.enums.Animation;
 import io.mindspice.okragameserver.game.enums.InvalidMsg;
 import io.mindspice.okragameserver.game.enums.PawnIndex;
 import io.mindspice.okragameserver.game.gameroom.action.ActionReturn;
@@ -191,7 +190,7 @@ public interface Card {
     }
 
     default ActionReturn getSequentialActionReturn(PlayerGameState playerGameState, PawnIndex playerIndex,
-            PlayerGameState targetGameState, PawnIndex targetIndex, Animation animation) {
+            PlayerGameState targetGameState, PawnIndex targetIndex, String animation) {
         return new ActionReturn(
                 getSequentialMultiInterim(playerGameState, playerIndex),
                 getSequentialMultiInterim(targetGameState, targetIndex),
@@ -200,7 +199,7 @@ public interface Card {
         );
     }
 
-    default ActionReturn getSingleActionReturn(Pawn player, Pawn target, Animation animation) {
+    default ActionReturn getSingleActionReturn(Pawn player, Pawn target, String animation) {
         return new ActionReturn(
                 new ArrayList<>(List.of(new PawnInterimState(player))),
                 new ArrayList<>(List.of(new PawnInterimState(target))),
@@ -210,7 +209,7 @@ public interface Card {
     }
 
     default ActionReturn getMultiActionReturn(PlayerGameState player, PawnIndex playerIdx,
-            PlayerGameState target, PawnIndex targetIdx, Animation animation) {
+            PlayerGameState target, PawnIndex targetIdx, String animation) {
         return new ActionReturn(
                 getMultiInterim(player, playerIdx),
                 getMultiInterim(target, targetIdx),

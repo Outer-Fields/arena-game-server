@@ -28,7 +28,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(200, 0, 0, 0, 1, 1, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.MEDIUM,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A strong attack highly successful against all of your opponents pawns. Low on damage," +
                     " but a highly effective attack against multiple pawns, for a low cost.")
             .build()),
@@ -38,7 +38,7 @@ public enum ActionCard implements Card {
             .setDamage(MULTI, new StatMap(225, 0, 0, 0, 1, 1, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.MEDIUM,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A focused devastating strike against all your opponents standing pawns. Delivers a highly trained " +
                     "and targeted blows that bypasses m+_ost defensive protections. Gold variety, higher cost, more devastation.")
             .build()),
@@ -47,7 +47,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(0, 80, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SHATTER, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SHATTER, WeaponSprite.AXE)
             .setDescription("A strong blunt blow, rendering those on the receiving ends armour less affective.")
             .build()),
     SHATTER_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 3, ORDER)
@@ -55,7 +55,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(0, 120, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SHATTER, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SHATTER, WeaponSprite.AXE)
             .setDescription("A strong blunt blow, rendering those on the receiving ends armour less affective. " +
                     "Gold variety with a higher cost and more damage.")
             .build()),
@@ -64,7 +64,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(0, 0, 80, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_DRAIN, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_DRAIN, WeaponSprite.SWORD)
             .setDescription("A target blow to an enemies vital pressure point, rendering their strength lower.")
             .build()),
     MIGHT_DRAIN_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 3, ORDER)
@@ -72,7 +72,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(0, 0, 110, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_DRAIN, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_DRAIN, WeaponSprite.SWORD)
             .setDescription("A target blow to an enemies vital pressure point, rendering their strength lower. " +
                     "Gold variety higher cost for slightly higher damage")
             .build()),
@@ -81,7 +81,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(0, 80, 0, 0, .65, 1, .65, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.STOMP, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.STOMP, WeaponSprite.NONE)
             .setDescription("A Violent stomp sending a shockwave through the ground, causing devastating reverberations that " +
                     "lower all opposing pawns defenses.")
             .build()),
@@ -90,7 +90,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(0, 80, 0, 0, .75, 1, .75, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.STOMP, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.STOMP, WeaponSprite.NONE)
             .setDescription("A Violent stomp sending a shockwave through the ground, causing devastating reverberations that " +
                     "lower all opposing pawns defenses. Gold variety with slightly higher chance and higher cost.")
             .build()),
@@ -99,7 +99,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(0, 40, 60, 0, .65, 1, .65, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.STOMP, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.STOMP, WeaponSprite.NONE)
             .setDescription("A Violent stomp channeling the might of all warriors of the past, sending a monumental shockwave" +
                     " through the ground, causing intense reverberations that lowers all opposing pawns defenses.")
             .build()),
@@ -108,7 +108,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(0, 50, 70, 0, .75, 1, .75, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.STOMP, AnimTime.LONG,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.STOMP, WeaponSprite.NONE)
             .setDescription("A Violent stomp channeling the might of all warriors of the past, sending a monumental shockwave" +
                     " through the ground, causing intense reverberations that lowers all opposing pawns defenses. " +
                     "Gold variety with a lower cost and higher chance.")
@@ -118,7 +118,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(200, 0, 0, 0, 1, 1, .5, .7))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.MEDIUM,AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A strong offensive attack dealing average damage, attacking multiple pawns if the opportunity " +
                     "presents itself.")
             .build()),
@@ -128,7 +128,7 @@ public enum ActionCard implements Card {
             .setDamage(MULTI, new StatMap(210, 0, 0, 0, 1, 1, .5, .7))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.MEDIUM, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A strong offensive attack dealing average damage while avoiding most defenses, attacking" +
                     " multiple pawns if the opportunity  presents itself. Gold variety higher cost and immune to most defense.")
             .build()),
@@ -137,7 +137,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(220, 0, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A Swift, simple, direct strike, dealing average damage for a low cost.")
             .build()),
     SWIFT_STRIKE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 2, ORDER)
@@ -145,7 +145,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(270, 0, 0, 0, 1.0, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A Swift, simple, direct strike, dealing average damage for a low cost. Gold variety" +
                     " with higher damage for a higher cost.")
             .build()),
@@ -155,7 +155,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(300, 0, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A direct and skillfully focused strike, it's precise nature bypasses most defenses.")
             .build()),
     FOCUSED_STRIKE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 4, ORDER)
@@ -164,7 +164,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(410, 0, 0, 0, 1.0, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A direct and skillfully focused strike, it's precise nature bypasses most defenses. " +
                     "Gold variety with a damage and cost.")
             .build()),
@@ -173,7 +173,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(75, 0, 0, 0, .5, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(6), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_DUAL, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD_DUAL)
             .setDescription("While not the most accurate, you release a flurry of 6 strikes. Damage inflicted depends on your luck.")
             .build()),
     FLURRY_STRIKE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 2, ORDER)
@@ -181,7 +181,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(75, 0, 0, 0, .35, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(12), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_DUAL, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD_DUAL)
             .setDescription("While not the most accurate, you release a flurry of 12 strikes. Damage inflicted depends on your luck." +
                     "Gold variety, larger flurry with lower chance. May luck be willing.")
             .build()),
@@ -190,7 +190,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(200, 45, 45, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A strong attack on multiple fronts, dealing a fair amount of damage to health while also inflicting" +
                     " loss to the opponents strength and defense.")
             .build()),
@@ -199,7 +199,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(250, 65, 65, 0, 1.0, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE, WeaponSprite.SWORD)
             .setDescription("A strong attack on multiple fronts, dealing a fair amount of damage to health while also inflicting" +
                     " loss to the opponents strength and defense. Gold variety higher cost with more damage.")
             .build()),
@@ -213,7 +213,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(4), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(125, 0, 0, 0, 0, 1, .35, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(4), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_DUAL, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD_DUAL)
             .setDescription("The spirit of chaos is channeled, leading to a devastating 4 strike flurry attack that decimates all in its path." +
                     " High risk of damage to both the opponent and ones own.")
             .build()),
@@ -224,7 +224,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(4), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(110, 0, 0, 0, 0, 0, .35, .9))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(4), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_DUAL, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD_DUAL)
             .setDescription("The spirit of chaos is channeled, leading to a devastating 4 strike flurry attack that decimates all in its path." +
                     " High risk of damage to both the opponent and ones own. Gold variety with higher cost, and a " +
                     "slightly lower risk of team damage.")
@@ -237,7 +237,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(SINGLE, new StatMap(400, 0, 0, 0, 1, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.LONG, AnimSpeed.SLOW))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.HAMMER)
             .setDescription("A direct wrathful blow, damaging the opponent at all costs, even ones own health. Bypasses most defenses. ")
             .build()),
     HARBINGER_OF_DEATH_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 4, CHAOS)
@@ -248,7 +248,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(SINGLE, new StatMap(400, 0, 0, 0, .95, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.LONG, AnimSpeed.SLOW))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.HAMMER)
             .setDescription("A direct wrathful blow, damaging the opponent at all costs, even ones own health. Bypasses most defenses." +
                     " Gold variety with a slightly higher cost, but less self risk.")
             .build()),
@@ -259,7 +259,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(0, 135, 0, 0, .7, 1, .9, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.DISINTEGRATE, AnimTime.LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.DISINTEGRATE, WeaponSprite.NONE)
             .setDescription("Channeling the voice of the chaos realm, your voice reverberates across the land, disintegrating " +
                     "the armour of all those around.")
             .build()),
@@ -270,7 +270,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(0, 150, 0, 0, .6, 1, .8, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.DISINTEGRATE, AnimTime.LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.DISINTEGRATE, WeaponSprite.NONE)
             .setDescription("Channeling the voice of the chaos realm, your voice reverberates across the land, disintegrating " +
                     "the armour of all those around. Gold variety higher cost, more damage, and slightly less risk.")
             .build()),
@@ -281,7 +281,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(100, 50, 0, 0, .75, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD)
             .setDescription("A strong direct attack dealing a sizable amount of health damage and a noticeable impact to defense. " +
                     "Risk of self damage from chaotic posture.")
             .build()),
@@ -292,7 +292,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(100, 50, 0, 0, .65, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD)
             .setDescription("A strong direct attack dealing a sizable amount of health damage and a noticeable impact to defense. " +
                     "Risk of self damage from chaotic posture. Gold variety with slightly lower self risk.")
             .build()),
@@ -304,7 +304,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(MULTI, new StatMap(100, 0, 0, 0, 0, 1, .6, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.NORMAL, AnimSpeed.FAST))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD)
             .setDescription("A sizable attack upon multiple opponents with high success, chaotic energy also means mild " +
                     "success upon one's own as well.")
             .build()),
@@ -316,7 +316,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(MULTI, new StatMap(80, 0, 0, 0, 0, 1, 0.5, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.MEDIUM, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD)
             .setDescription("A sizable attack upon multiple opponents with high success, chaotic energy also means mild" +
                     " success upon one's own as well. Gold variety with higher enemy damage, lower self damage and higher cost.")
             .build()),
@@ -328,7 +328,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(SINGLE, new StatMap(50, 25, 25, 0, 1, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_SHIELD, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_SHIELD, WeaponSprite.SHIELD)
             .setDescription("A strong bashing blow of your shield, deals a small amount of health damage that bypasses most defenses while also " +
                     "lower the opponents strength and defense. Performed with a disregard to ones safety, resulting in " +
                     "risk of self damage to health, strength, and defense, though the opponent suffers more.")
@@ -341,7 +341,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(SINGLE, new StatMap(50, 37, 37, 0, .85, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MELEE_SHIELD, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MELEE_SHIELD, WeaponSprite.SHIELD)
             .setDescription("A strong bashing blow of your shield, deals a small amount of health damage that bypasses most defenses while also " +
                     "lower the opponents strength and defense. Performed with a disregard to ones safety, resulting in " +
                     "risk of self damage to health, strength, and defense, though the opponent suffers more. " +
@@ -354,7 +354,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(0, 12, 75, 0, .8, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_POWER, AnimTime.NORMAL, AnimSpeed.NORMAL).setSprite(Sprite.AXE))
+            .setAnimation(AnimType.MELEE_POWER, WeaponSprite.AXE)
             .setDescription("A strong and deadly strike, backed by lots of force, risk of strength loss from over exertion.")
             .build()),
     OVERPOWERED_STRIKE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 3, CHAOS)
@@ -364,7 +364,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(0, 25, 75, 0, .8, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_POWER, AnimTime.NORMAL, AnimSpeed.NORMAL).setSprite(Sprite.AXE))
+            .setAnimation(AnimType.MELEE_POWER, WeaponSprite.AXE)
             .setDescription("A strong and deadly strike, backed by lots of force, guaranteed strength loss from over exertion." +
                     " Gold variety, slightly higher damage to opponents health and defense from over exertion.")
             .build()),
@@ -375,7 +375,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(4), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(125, 0, 0, 0, 0, 1, .4, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(4), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.MEDIUM, AnimSpeed.FAST))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD)
             .setDescription("A non-discriminatory attack, a chaotic offensive, risk of attacking anyone on the field.")
             .build()),
     ROULETTE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 2, CHAOS)
@@ -385,7 +385,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(4), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(175, 0, 0, 0, 0, 1, .4, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(4), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.MELEE_CHAOS_SINGLE, AnimTime.MEDIUM, AnimSpeed.FAST))
+            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.SWORD)
             .setDescription("A non-discriminatory attack, a chaotic offensive, risk of attacking anyone on the field. " +
                     "Gold variety with higher damage and cost.")
             .build()),
@@ -396,7 +396,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(0, 0, 0, 100, .75, 1, .4, .75))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.RESONANT, AnimTime.LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.RESONANT, WeaponSprite.NONE)
             .setDescription("A loud resonant sound is omitted from you armament directed towards your opponent side, as " +
                     "practiced by ancient warriors. Lowers the mana of those targeted. This ancient tradition is no " +
                     "longer practiced, high risk of mis-direction and un-predictable results.")
@@ -408,7 +408,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(0, 0, 0, 100, .65, 1, .3, .75))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.RESONANT, AnimTime.LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.RESONANT, WeaponSprite.NONE)
             .setDescription("A loud resonant sound is omitted from you armament directed towards your opponent side, as " +
                     "practiced by ancient warriors. Lowers the mana of those targeted. This ancient tradition is no " +
                     "longer practiced, but you are fairly adept at it, though still unpredictable. Gold variant uses " +
@@ -420,7 +420,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(300, 0, 0, 0, 1.2, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MANA_STRIKE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MANA_STRIKE, WeaponSprite.SWORD)
             .setDescription("Channel your mana into strength for a strong direct strike, highly successful, bypassing most defenses.")
             .build()),
     MANA_STRIKE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 3, CHAOS)
@@ -429,7 +429,7 @@ public enum ActionCard implements Card {
             .setDamage(MULTI, new StatMap(300, 0, 0, 0, 1.2, 1, .5, .65))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.MANA_STRIKE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.MANA_STRIKE, WeaponSprite.SWORD)
             .setDescription("Channel your mana into strength for a strong direct strike, highly successful, bypassing most defenses. " +
                     "Gold variant, uses slightly more mana for a chance to damage multiple pawns from the energy released.")
             .build()),
@@ -442,7 +442,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(300, 0, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.5, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A well aimed shot to a vital region between the enemies armor to bypass armour defense, 50% chance of vital damage" +
                     " bypassing most defenses.")
             .build()),
@@ -451,7 +451,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(350, 0, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.65, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A well aimed shot to a vital region between the enemies armor to bypass armour defense, 65% chance of vital damage " +
                     "bypassing most defenses. Gold variant higher vital chance for high cost.")
             .build()),
@@ -460,7 +460,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(75, 0, 0, 0, .75, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.25, 6), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A flurry of 6 well placed shots, accuracy traded for volume, 25% chance of a vital hit bypassing most defenses.")
             .build()),
     VITAL_FLURRY_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 2, ORDER)
@@ -468,7 +468,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(75, 0, 0, 0, .75, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.25, 12), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A flurry of 12 well placed shots, accuracy traded for volume, 25% chance of a vital hit bypassing most defenses. " +
                     "Gold variant with a larger flurry and higher cost.")
             .build()),
@@ -477,7 +477,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(100, 0, 75, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A well placed shot to an opponents knee, dealing a lage loss of strength. They used to be an adventurer....")
             .build()),
     KNEE_SHOT_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 3, ORDER)
@@ -485,7 +485,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(100, 0, 100, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A well placed shot to an opponents knee, dealing a lage loss of strength. Gold variant, high damage for a higher cost." +
                     "...Until they took an arrow to the knee.")
             .build()),
@@ -494,7 +494,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(100, 0, 0, 0, .45, 1, .45, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.2, 4), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("Fire off 4 rapid shots to each enemy on your opponents line. Each with a 20% chance of a " +
                     "vital hit bypassing most defenses.")
             .build()),
@@ -503,7 +503,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(100, 0, 0, 0, .6, 1, .6, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.35, 4), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("Fire off 4 rapid shots to each enemy on your opponents line. Each with a 25% chance of a vital hit bypassing most defenses." +
                     "Gold variant slightly high cost for a small increase in vital hit chance. ")
             .build()),
@@ -512,7 +512,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(200, 0, 0, 0, 1.2, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.5, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A swift simple shot, low cost, light on damage, 20% chance of a vital hit bypassing defenses.")
             .build()),
     SWIFT_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 2, ORDER)
@@ -520,7 +520,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(275, 0, 0, 0, 1.2, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.9, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("A swift simple shot, low cost, light on damage, 25% chance of a vital hit bypassing defenses." +
                     "Gold variant, slight cost increase for high chance of vital hit.")
             .build()),
@@ -530,7 +530,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(400, 50, 0, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.SHURIKEN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SHURIKEN, WeaponSprite.NONE)
             .setDescription("You pull from your pocket a weighted and deadly shuriken, dealing a large amount of damage " +
                     "to health and moderate damage to the enemies armor.")
             .build()),
@@ -540,7 +540,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(350, 50, 0, 0, .6, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(2), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.SHURIKEN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SHURIKEN, WeaponSprite.NONE)
             .setDescription("You pull from your pocket a weighted and deadly shuriken, dealing a large amount of damage to health and " +
                     "moderate damage to the enemies armor. Gold variant, throws two in rapid succession with " +
                     "each having a moderate chance of hitting")
@@ -554,7 +554,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, POISON, true, 80, .25, true, .75, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_POISON_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_POISON_SINGLE, WeaponSprite.BOW)
             .setDescription("Dipping an arrow in poison, you take aim for the most vital exposed region, if the arrow hits its mark" +
                     " you deal substantial poison damage.")
             .build()),
@@ -567,7 +567,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, POISON, true, 95, .25, true, 1.1, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_POISON_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_POISON_SINGLE, WeaponSprite.BOW)
             .setDescription("Dipping an arrow in poison, you take aim for the most vital exposed region, using a special arrow" +
                     "crafted for penetration you deal substantial poison damage. Gold variant higher cost, and high chance of successful poisoning . ")
             .build()),
@@ -580,7 +580,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SLEEP, true, 150, .5, true, .65, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_ENCHANTED_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_ENCHANTED_SINGLE, WeaponSprite.BOW)
             .setDescription("Using the oils from a foreign ivy know for it sedative effects, you dip and fire a well aimed shot towards" +
                     "your opponents vital regions, if you hit they a quickly in a slumber.")
             .build()),
@@ -593,7 +593,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SLEEP, true, 150, .35, true, .75, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_ENCHANTED_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_ENCHANTED_SINGLE, WeaponSprite.BOW)
             .setDescription("Using the oils from a foreign ivy know for it sedative effects, you dip and fire a well aimed shot towards" +
                     "your opponents vital regions, if you hit they a quickly in a slumber. Gold variant with a slightly " +
                     "lower roll off chance, higher slumber chance, and slightly higher cost.")
@@ -603,7 +603,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(200, 0, 0, 0, .8, 1, .8, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.5, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.MEDIUM, AnimSpeed.FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("Fire off a precise well meditated shot to each of your opponents pawns, moderate chance of vital damage.")
             .build()),
     TRIPLE_SHOT_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 3, ORDER)
@@ -611,7 +611,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(200, 0, 0, 0, .8, 1, .8, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(0.75, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.MEDIUM, AnimSpeed.FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("Fire off a precise well meditated shot to each of your opponents pawns, Gold variant with higher chance of vital damage.")
             .build()),
     QUICK_TRIPLE(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 1, ORDER)
@@ -619,7 +619,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(150, 0, 0, 0, .7, 1, .7, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.35, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.MEDIUM, AnimSpeed.FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("Fire of a quick arrow towards all of your opponents pawns, lacks in precision but low in cost. Good against less armored opponents.")
             .build()),
     QUICK_TRIPLE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 1, ORDER)
@@ -627,7 +627,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(150, 0, 0, 0, .8, 1, .8, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.45, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_SINGLE, AnimTime.MEDIUM, AnimSpeed.FAST))
+            .setAnimation(AnimType.ARROW_SINGLE, WeaponSprite.BOW)
             .setDescription("Fire of a quick arrow towards all of your opponents pawns, lacks in precision but low in cost. Good against less armored opponents." +
                     "Gold Variant slightly higher chance, for higher cost.")
             .build()),
@@ -641,7 +641,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(1.1, 1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(175, 0, 0, 0, .8, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(1.1, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_STRONG, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_STRONG, WeaponSprite.BOW)
             .setDescription("Drawing the bow back with all your might, you fire off a single, powerful armor piercing shot. " +
                     "It almost as if your ancestors are pushing it through them. Damages both health and defense. Risk of self damage from over exertion.")
             .build()),
@@ -652,7 +652,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(1.1, 1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(160, 0, 0, 0, .7, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(1.1, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_STRONG, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_STRONG, WeaponSprite.BOW)
             .setDescription("Drawing the bow back with all your might, you fire off a single, powerful armor piercing shot. " +
                     "It almost as if your ancestors are pushing it through them. Damages both health and defense. Risk of self damage from over exertion." +
                     " Gold variant with higher damage for a higher cost and lower risk of self damage.")
@@ -664,7 +664,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(.75, 10), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(75, 0, 0, 0, .15, 1, .15, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(.5, 10), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_CHAOS_RAIN, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_CHAOS_RAIN, WeaponSprite.BOW)
             .setDescription("Fire a barrage of arrows high into the sky, raining down on your opponents line...and yours. " +
                     "High chaos and risk of team damage, may luck be on your side. High chance of vital hits.")
             .build()),
@@ -675,7 +675,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(.75, 10), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(90, 0, 0, 0, .15, 1, .15, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(.4, 10), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_CHAOS_RAIN, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_CHAOS_RAIN, WeaponSprite.BOW)
             .setDescription("Fire a barrage of arrows high into the sky, raining down on your opponents line...and yours. " +
                     "High chaos and risk of team damage, may luck be on your side. High chance of vital hits. " +
                     "Gold variant with higher damage for a higher cost.")
@@ -687,7 +687,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(.75, 10), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(40, 0, 0, 0, 0, 1, .15, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(.75, 10), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_RAIN, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_RAIN, WeaponSprite.BOW)
             .setDescription("Fire a focused but weakly drawn barrage of arrows into the sky. Light on damage, but less riskier to team" +
                     "than Chaos rain. High chance of vital hits.")
             .build()),
@@ -698,7 +698,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(.75, 10), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(50, 0, 0, 0, 0, 1, .15, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(.75, 10), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_RAIN, AnimTime.NORMAL, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_RAIN, WeaponSprite.BOW)
             .setDescription("Fire a focused but weakly drawn barrage of arrows into the sky. Light on damage, but less riskier to team" +
                     "than Chaos rain. High chance of vital hits. Gold variant, slight higher accuracy and damage.")
             .build()),
@@ -723,7 +723,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, DE_FORTIFY, true, 100, .45, true, 0.2, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_STRANGE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_STRANGE, WeaponSprite.BOW)
             .setDescription("The local alchemist had given you a poison prepared from the remaining ingredients from their preparations " +
                     "for battle. You quickly dip an arrow in it, slinging some on you in your haste, you notice an noxious odor," +
                     "and start to feel unwell firing your shot.....You hope this doesnt last long.")
@@ -749,7 +749,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, DE_FORTIFY, true, 100, .45, true, 0.25, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_STRANGE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_STRANGE, WeaponSprite.BOW)
             .setDescription("The local alchemist had given you a poison prepared from the remaining ingredients from their preparations" +
                     " for battle. This one seem different than the last time. You quickly dip an arrow in it, slinging some " +
                     "on you in your haste, you notice an noxious odor, and start to feel unwell firing your shot....." +
@@ -764,7 +764,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, FEEBLENESS, true, 1, .35, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, WeaponSprite.BOW)
             .setDescription("Using your mana you channel a chaotic energy of feebleness into your arrows shaft, lowering you targets willpower " +
                     "Highly successful, but not the most effective.")
             .build()),
@@ -777,7 +777,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, FEEBLENESS, true, 2, .35, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, WeaponSprite.BOW)
             .setDescription("Using your mana you channel a chaotic energy of feebleness into your arrows shaft, lowering you targets willpower. " +
                     "Gold variant with stronger enchantment.")
             .build()),
@@ -790,7 +790,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, MISFORTUNE, true, 2, .25, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, WeaponSprite.BOW)
             .setDescription("Using your mana you channel chaotic energy of misfortune into your arrows shaft, lowering your " +
                     "targets luck. Highly Successful. ")
             .build()),
@@ -803,14 +803,14 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, MISFORTUNE, true, 4, .2, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARROW_CHAOS_ENCHANTED_SINGLE, WeaponSprite.BOW)
             .setDescription("Using your mana you channel chaotic energy of misfortune into your arrows shaft, lowering your " +
                     "targets luck. Highly Successful. Gold variant with stronger enchantment.")
             .build()),
     REIGN_OF_CHAOS(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 2, CHAOS)
             .setCost(new StatMap(0, 0, 70, 70))
             .setCostLogic(Cost.GET)
-            .setDamage(MULTI, new StatMap(100, 0, 0, 0, .7, 1,.7,1))
+            .setDamage(MULTI, new StatMap(100, 0, 0, 0, .7, 1, .7, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.35, 1), DamageLogic.Basic.GET)
             .setTargetEffects(new Effect[]{
                     new Effect(MULTI, MISFORTUNE, true, 2, .3, true, .15, 1, .15, 1),
@@ -839,14 +839,14 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, CONFUSION, true, .35, .3, true, .1, 1, .1, 1)
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_ENCHANTED_RAIN, AnimTime.EXTRA_LONG, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_ENCHANTED_RAIN, WeaponSprite.BOW)
             .setDescription("Not the most adept at magic, you draw on all your knowledge and put your fate into the hands" +
                     "of the ancestral plane enchanting pure chaos into your arrows shaft. May the luck of their spirits be on your side.")
             .build()),
     REIGN_OF_CHAOS_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 4, CHAOS)
             .setCost(new StatMap(0, 0, 90, 160))
             .setCostLogic(Cost.GET)
-            .setDamage(MULTI, new StatMap(150, 0, 0, 0, .75, 1,.75,1))
+            .setDamage(MULTI, new StatMap(150, 0, 0, 0, .75, 1, .75, 1))
             .setDamageLogic(DamageCalc.VitalChance.GET(.35, 1), DamageLogic.Basic.GET)
             .setTargetEffects(new Effect[]{
                     new Effect(MULTI, MISFORTUNE, true, 2, .33, true, .25, 1, .25, 1),
@@ -868,7 +868,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, CONFUSION, true, .35, .33, true, .1, 1, .1, 1)
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ARROW_ENCHANTED_RAIN, AnimTime.EXTRA_LONG, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.ARROW_ENCHANTED_RAIN, WeaponSprite.BOW)
             .setDescription("Not the most adept at magic, you draw on all your knowledge and put your fate into the hands" +
                     "of the ancestral plane enchanting pure chaos into your arrows shaft. May the luck of their spirits be on your side." +
                     " Gold variant stronger enchantment with higher chances and stronger effects to all, for more mana")
@@ -880,7 +880,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(1.1, 1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(700, 0, 0, 0, .6, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(1.1, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SHADOW_STRIKE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SHADOW_STRIKE, WeaponSprite.DAGGER)
             .setDescription("Channeling mana to cloak your self, you attempt to sneak behind the opponents line to attack them from behind " +
                     "Dealing high damage if successful, with a high risk of damage from being caught.")
             .build()),
@@ -891,7 +891,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.VitalChance.GET(1.1, 1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(700, 0, 0, 0, .45, 1))
             .setSelfDamageLogic(DamageCalc.VitalChanceSelf.GET(1.1, 1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SHADOW_STRIKE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SHADOW_STRIKE, WeaponSprite.DAGGER)
             .setDescription("Channeling mana to cloak your self, you attempt to sneak behind the opponents line to attack them from behind " +
                     "Dealing high damage if successful, with a high risk of damage from being caught. Gold variant, uses " +
                     "more mana to cloak, lowering risk of being caught and damaged.")
@@ -902,8 +902,8 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(450, 100, 0, 0, .60, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.JAVELIN, AnimTime.NORMAL, AnimSpeed.NORMAL)).
-            setDescription("Reaching on to your back you grab a sacred javelin, one of the most devastating weapons known. Not the most " +
+            .setAnimation(AnimType.JAVELIN, WeaponSprite.NONE)
+            .setDescription("Reaching on to your back you grab a sacred javelin, one of the most devastating weapons known. Not the most " +
                     "accurate, but carries a high amount of health and defense damage if it hits its mark.")
             .build()),
     SKY_PIERCER_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, RANGED, 4, CHAOS)
@@ -912,7 +912,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(450, 100, 0, 0, .75, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.JAVELIN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.JAVELIN, WeaponSprite.NONE)
             .setDescription("Reaching on to your back you grab a sacred javelin, one of the most devastating weapons known. Not the most " +
                     "accurate, but carries a high amount of health and defense damage if it hits its mark. " +
                     "Gold variant with higher chance.")
@@ -928,7 +928,7 @@ public enum ActionCard implements Card {
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.SLING_SHOT, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SLING_SHOT, WeaponSprite.NONE)
             .setDescription("Taking a slingshot carried for times of limited ammo and loading it with a large rock, you pull and release your attack." +
                     " You are well trained and with accuracy and luck you can deal a blow to their head rendering them unconscious and/or confused.")
             .build()),
@@ -943,7 +943,7 @@ public enum ActionCard implements Card {
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.SLING_SHOT, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SLING_SHOT, WeaponSprite.NONE)
             .setDescription("Taking a sling carried for times of limited ammo and loading it with a large rock, you swing and release your attack." +
                     "You are well trained and with accuracy and luck you can deal a blow to their head rendering them unconscious and/or confused." +
                     " Gold variant, using some extra strength you deal a more powerful blow.")
@@ -958,7 +958,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SIPHON_HEALTH, true, 200, 0, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SIPHON_HEALTH, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SIPHON_HEALTH, WeaponSprite.STAFF)
             .setDescription("Infuse yourself with the health of your opponent.")
             .build()),
     LIFE_SAP_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -968,7 +968,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SIPHON_HEALTH, true, 350, 0, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SIPHON_HEALTH, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SIPHON_HEALTH, WeaponSprite.STAFF)
             .setDescription("Infuse yourself with the health of your opponent. Gold variant, siphons more health for a higher cost.")
             .build()),
     DEFENSE_SAP(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
@@ -978,7 +978,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SIPHON_DEFENSE, true, 60, 0, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.SIPHON_DEFENSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SIPHON_DEFENSE, WeaponSprite.STAFF)
             .setDescription("Your opponent feels their armour start to heat up, as you channel it's damage resistance into your own their flesh begins to burn.")
             .build()),
     DEFENSE_SAP_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, ORDER)
@@ -991,7 +991,7 @@ public enum ActionCard implements Card {
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
             .setSpecial(IGNORE_MP)
-            .setAnimation(Animation.build(AnimType.SIPHON_DEFENSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.SIPHON_DEFENSE, WeaponSprite.STAFF)
             .setDescription("Your opponent feels their armour start to heat up as you channel it's damage resistance into your own their flesh begins to burn." +
                     "Gold variant higher costs, siphons more defense and causes health damage.")
             .build()),
@@ -1002,7 +1002,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, FEEBLENESS, true, 1, .4, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Feeble the mind of your opponent, lowering their willpower and regeneration.")
             .build()),
     ENFEEBLED_MIND_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -1012,7 +1012,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, FEEBLENESS, true, 2, .25, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Feeble the mind of your opponent, lowering their willpower and regeneration. " +
                     "Gold variant, higher cost for higher effect and duration.")
             .build()),
@@ -1023,7 +1023,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SLEEP, true, 150, .5, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("A focused and Strong arcane mist, causing an opponent to slip into the peace of sleep, while still in the turmoils of battle.")
             .build()),
     SLEEP_RELEASE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, ORDER)
@@ -1033,7 +1033,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, SLEEP, true, 150, .65, true, .5, 1, .5, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("A focused arcane mist, causing your opponents to slip into the peace of sleep, while still in the turmoils of battle." +
                     " Gold variant, wider mist but less concentrated, rolls off sooner and dependent on chance.")
             .build()),
@@ -1044,7 +1044,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, MISFORTUNE, true, 4, .35, true, 1, 1, 0, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("The clouds darken overhead as an eerie light shines though, leaving an unsettling feeling of fate among your opponents.")
             .build()),
     CLOUD_OF_ILL_FATE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -1054,7 +1054,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, MISFORTUNE, true, 4, .35, true, .5, 1, .5, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("The clouds darken overhead as an eerie light shines though, leaving an unsettling feeling of fate among your opponents." +
                     "Gold variant affects multiple enemies for a higher cost.")
             .build()),
@@ -1063,7 +1063,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(175, 50, 50, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BOLT_PURPLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BOLT_PURPLE, WeaponSprite.STAFF)
             .setDescription("Fire off a bolt of energy towards the enemy, damaging health, defense, and strength on impact.")
             .build()),
     CRIPPLING_BOLT_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, ORDER)
@@ -1071,7 +1071,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(275, 80, 80, 0, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BOLT_PURPLE, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BOLT_PURPLE, WeaponSprite.STAFF)
             .setDescription("Meditating on your attack you fire off a bolt of immense energy towards the enemy, damaging health, defense, and strength on impact." +
                     "Gold variant, higher damage to stats for a higher cost.")
             .build()),
@@ -1080,7 +1080,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(200, 0, 0, 0, 1, 1, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.AURA_DESTRUCTION, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.AURA_DESTRUCTION, WeaponSprite.STAFF)
             .setDescription("Cast a damaging aura around your opponents line causing moderate damage to them all.")
             .build()),
     AURA_OF_DESTRUCTION_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, ORDER)
@@ -1088,7 +1088,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(300, 0, 0, 0, 1, 1, 1, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.AURA_DESTRUCTION, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.AURA_DESTRUCTION, WeaponSprite.STAFF)
             .setDescription("Cast a damaging aura around your opponents, they are overwhelmed with pain as you deal heavy damage to them all.")
             .build()),
     SPIT_FIRE(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 1, ORDER)
@@ -1097,7 +1097,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(50, 0, 0, 0, .3, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(10), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_MP)
-            .setAnimation(Animation.build(AnimType.FIREBALL, AnimTime.LONG, AnimSpeed.FAST))
+            .setAnimation(AnimType.FIREBALL, WeaponSprite.NONE)
             .setDescription("You release a volley of ten fireballs directly toward and opponent, some do not make it the full " +
                     "distance, but the ones that do can not be resisted, may luck be on your side.")
             .build()),
@@ -1107,7 +1107,7 @@ public enum ActionCard implements Card {
             .setDamage(SINGLE, new StatMap(75, 0, 0, 0, .35, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(10), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_MP)
-            .setAnimation(Animation.build(AnimType.FIREBALL, AnimTime.LONG, AnimSpeed.FAST))
+            .setAnimation(AnimType.FIREBALL, WeaponSprite.NONE)
             .setDescription("You release a volley of ten fireballs directly toward and opponent, some do not make it the full " +
                     "distance, but the ones that do can not be resisted, may luck be on your side. Gold variant with higher cost, " +
                     "but more damage and chance.")
@@ -1117,7 +1117,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(50, 0, 0, 0, .15, 1, .15, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(25), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CATATUMBO_LIGHTNING, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CATATUMBO_LIGHTNING, WeaponSprite.STAFF)
             .setDescription("The sky darkens, as lighting start flashing rapidly, dancing around the sky. Suddenly it descends, " +
                     "wrecking havoc to your opponents line.")
             .build()),
@@ -1126,7 +1126,7 @@ public enum ActionCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(MULTI, new StatMap(65, 0, 0, 0, .2, 1, .2, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(25), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CATATUMBO_LIGHTNING, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CATATUMBO_LIGHTNING, WeaponSprite.STAFF)
             .setDescription("The sky darkens, as lighting start flashing rapidly, dancing around the sky. Suddenly it descends, " +
                     "wrecking havoc to your opponents line. Gold variant with slight higher damage and chance.")
             .build()),
@@ -1137,7 +1137,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, DE_INVIGORATE, true, 250, .33, true, 1, 1, 0, 0),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ENERGY_BALL_DRAIN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ENERGY_BALL_DRAIN, WeaponSprite.STAFF)
             .setDescription("Hitting your enemy with a ball of energy they find themselves feeling suddenly unwell. Lowers both health and max health for duration.")
             .build()),
     VITALITY_DRAIN_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -1147,7 +1147,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, DE_INVIGORATE, true, 325, .33, true, 1, 1, 0, 0),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.ENERGY_BALL_DRAIN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ENERGY_BALL_DRAIN, WeaponSprite.STAFF)
             .setDescription("Hitting your enemy with a ball of energy they find themselves feeling suddenly unwell. Lowers both health and max health for duration. " +
                     "Gold variant, deals higher health loss for a higher cost.")
             .build()),
@@ -1161,7 +1161,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SIPHON_MANA, true, 150, 0, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.IMPASSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.IMPASSE, WeaponSprite.STAFF)
             .setDescription("A spiteful attack that leaves both you and your opponent with less manna than you started with," +
                     " no one wins today.....or do they?")
             .build()),
@@ -1172,7 +1172,7 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, SIPHON_MANA, true, 200, 0, true, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.IMPASSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.IMPASSE, WeaponSprite.STAFF)
             .setDescription("A spiteful attack that leaves both you and your opponent with less manna than you started with," +
                     " no one wins today.....or do they? Gold variant with higher mana siphoning and cost.")
             .build()),
@@ -1185,7 +1185,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.SeqTargetAndSelf.GET, DamageLogic.Basic.GET)
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET) // Ignored needed to validate
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.ARC_LIGHTENING, AnimTime.SHORT, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARC_LIGHTENING, WeaponSprite.STAFF)
             .setDescription("You release a high voltage bolt of lightening with a high probability of arcing to other players....and" +
                     " possibly your own. Will jump to other pawns that are near, most effective when cast towards the ends of your opponents " +
                     "line. Un-faltered by armor.")
@@ -1194,11 +1194,11 @@ public enum ActionCard implements Card {
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
             ActionReturn actionReturn = getSequentialActionReturn(player, playerIdx, target, targetIdx, getStats().getAnimation());
             // Do Cost, aborts if player can't afford;
-               if (!getStats().getCostLogic().doCost(player.getPawn(playerIdx), getStats().getCost().asMap(), actionReturn)) {
+            if (!getStats().getCostLogic().doCost(player.getPawn(playerIdx), getStats().getCost().asMap(), actionReturn)) {
                 return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg._INVALID_COST, getName());
             }
             getStats().getDamageCalc().doDamage(getStats().getDamageLogic(), actionReturn.playerPawnStates,
-                                                actionReturn.targetPawnStates, this, getStats().getSpecial());
+                    actionReturn.targetPawnStates, this, getStats().getSpecial());
 
             getStats().getSelfDamageCalc().doDamage(getStats().getDamageLogic(), actionReturn.playerPawnStates,
                     actionReturn.targetPawnStates, this, getStats().getSpecial());
@@ -1215,7 +1215,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.SeqTargetAndSelf.GET, DamageLogic.Basic.GET)
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET) // Ignored needed to validate
             .setSpecial(IGNORE_DP)
-            .setAnimation(Animation.build(AnimType.ARC_LIGHTENING, AnimTime.SHORT, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.ARC_LIGHTENING, WeaponSprite.STAFF)
             .setDescription("You release a high voltage bolt of lightening with a high probability of arcing to other players...." +
                     "and possibly your own. Will jump to other pawns that are near, most effective when cast towards the ends of your " +
                     "opponents line. Un-faltered by armor. Gold variant more damage for a higher cost.")
@@ -1224,15 +1224,15 @@ public enum ActionCard implements Card {
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
             ActionReturn actionReturn = getSequentialActionReturn(player, playerIdx, target, targetIdx, getStats().getAnimation());
             // Do Cost, aborts if player can't afford;
-               if (!getStats().getCostLogic().doCost(player.getPawn(playerIdx), getStats().getCost().asMap(), actionReturn)) {
+            if (!getStats().getCostLogic().doCost(player.getPawn(playerIdx), getStats().getCost().asMap(), actionReturn)) {
                 return ActionReturn.getInvalid(player.getPawn(playerIdx), InvalidMsg._INVALID_COST, getName());
             }
 
             getStats().getDamageCalc().doDamage(getStats().getDamageLogic(), actionReturn.playerPawnStates,
-                                                actionReturn.targetPawnStates, this, getStats().getSpecial());
+                    actionReturn.targetPawnStates, this, getStats().getSpecial());
 
             getStats().getSelfDamageCalc().doDamage(getStats().getDamageLogic(), actionReturn.playerPawnStates,
-                                                    actionReturn.targetPawnStates, this, getStats().getSpecial());
+                    actionReturn.targetPawnStates, this, getStats().getSpecial());
             return actionReturn;
         }
     },
@@ -1247,7 +1247,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, POISON, true, 10, .6, true, .1, 1, .1, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(40), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.NOXIOUS_RAIN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.NOXIOUS_RAIN, WeaponSprite.NONE)
             .setDescription("The clouds darken overhead as an eerie light shines though, leaving an unsettling feeling of fate among your " +
                     "opponents as they start to notice a noxious odour in the wind. Due to the chaotic nature of whether manipulation, your team endures some showers as well. ")
             .build()),
@@ -1262,7 +1262,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, POISON, true, 12, .6, true, .1, 1, .1, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(40), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.NOXIOUS_RAIN, AnimTime.NORMAL, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.NOXIOUS_RAIN, WeaponSprite.NONE)
             .setDescription("The clouds darken overhead as an eerie light shines though, leaving an unsettling feeling of fate among your " +
                     "opponents as they start to notice a noxious odour in the wind. Due to the chaotic nature of whether manipulation, your team endures some showers as well.  " +
                     "Gold variant with slightly higher poison damage and chance.")
@@ -1278,7 +1278,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, MISFORTUNE, true, 4, .35, true, .9, 1, 1, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CLOUDS_FATE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CLOUDS_FATE, WeaponSprite.STAFF)
             .setDescription("A gloom is cast upon the land, everyone feels uneasy as if fates is knocking on the door. Luck is heavily lowered for all upon the field, though your fortune is better.")
             .build()),
     FICKLE_FATE_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, CHAOS)
@@ -1292,7 +1292,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, MISFORTUNE, true, 6, .35, true, .9, 1, 1, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CLOUDS_FATE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CLOUDS_FATE, WeaponSprite.STAFF)
             .setDescription("A gloom is cast upon the land, everyone feels uneasy as if fates is knocking on the door. " +
                     "Luck is heavily lowered for all upon the field, may this some how be and means to an end. ")
             .build()),
@@ -1309,7 +1309,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, DE_FORTIFY, true, 8, .35, true, .5, 1, .5, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(15), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.TECTONIC, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.TECTONIC, WeaponSprite.NONE)
             .setDescription("The ground begins to shake, and armor begins to rattle. Your opponents notice a loss in their strength and new cracks in their armor." +
                     " Your teams feels some of the tremors as well.")
             .build()),
@@ -1326,7 +1326,7 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, DE_FORTIFY, true, 8, .35, true, .4, 1, .5, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(20), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.TECTONIC, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.TECTONIC, WeaponSprite.NONE)
             .setDescription("The ground begins to shake, and armor begins to rattle. It seems as if the quake will never stop. " +
                     "Your opponents notice a heavy loss in their strength and new cracks in their armor." +
                     "Your teams feels some of the tremors as well.")
@@ -1338,7 +1338,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(450, 0, 0, 0, 1, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.PYRE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.PYRE, WeaponSprite.NONE)
             .setDescription("Casting a scorching blast of fire to your opponent you feel a strong heat upon their brow, " +
                     "leaving ashes and embers swirling in the air. Causes devastation to your enemy at a large cost and chance of self damage.")
             .build()),
@@ -1349,7 +1349,7 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(375, 0, 0, 0, .9, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.PYRE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.PYRE, WeaponSprite.NONE)
             .setDescription("Casting a scorching blast of fire to your opponent you feel a strong heat upon their brow, " +
                     "leaving ashes and embers swirling in the air. Causes devastation to your enemy at a large cost and " +
                     "chance of self damage. Gold variant with higher cost and slightly less risk to self.")
@@ -1365,10 +1365,11 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, CONFUSION, true, .1, .35, true, .9, 1, 1, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.WINDS_CONFUSION, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.WINDS_CONFUSION, WeaponSprite.NONE)
             .setDescription("Strong winds begin to stir, as debris fills the air confusion begins to set in on the field." +
                     " Causes moderate confusion to enemies, as well as some to your own team albeit less as they were mentally prepared.")
             .build()),
+
     WINDS_OF_CONFUSION_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, CHAOS)
             .setCost(new StatMap(0, 0, 0, 140))
             .setCostLogic(Cost.GET)
@@ -1380,11 +1381,12 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, CONFUSION, true, .25, .35, true, .9, 1, 1, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.WINDS_CONFUSION, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.WINDS_CONFUSION, WeaponSprite.NONE)
             .setDescription("Gale force wins take over the land, as debris fills the air confusion begins to set in on the field." +
                     " Causes heavy confusion to enemies, as well as moderate confusion to your own team albeit less as they were mentally prepared." +
                     " Gold variant causes more confusion for a higher cost, with your own team less affected.")
             .build()),
+
     PURE_BEFUDDLEMENT(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, CHAOS)
             .setCost(new StatMap(0, 0, 0, 100))
             .setCostLogic(Cost.GET)
@@ -1392,9 +1394,10 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, CONFUSION, true, 0.65, .5, true, 1, 1, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.FOG_BEFUDDLE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.FOG_BEFUDDLE, WeaponSprite.NONE)
             .setDescription("A fog of confusion settles around your opponent leaving them extremely disoriented.")
             .build()),
+
     PURE_BEFUDDLEMENT_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, CHAOS)
             .setCost(new StatMap(0, 0, 0, 160))
             .setCostLogic(Cost.GET)
@@ -1402,14 +1405,15 @@ public enum ActionCard implements Card {
                     new Effect(SINGLE, CONFUSION, true, 1, .35, true, 1, 1, 1, 1),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.FOG_BEFUDDLE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.FOG_BEFUDDLE, WeaponSprite.NONE)
             .setDescription("A fog of confusion settles around your opponent leaving them extremely disoriented, leaving" +
                     " not even a single thought to be reckoned with. Gold variant deals complete confusion for a high cost.")
             .build()),
+
     VOLTAIC_BLAST(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, CHAOS)
             .setCost(new StatMap(0, 0, 0, 90))
             .setCostLogic(Cost.GET)
-            .setDamage(MULTI, new StatMap(200, 0, 0, 0, 1, 1, 0.5,1))
+            .setDamage(MULTI, new StatMap(200, 0, 0, 0, 1, 1, 0.5, 1))
             .setDamageLogic(DamageCalc.BasicTarget.GET(1), DamageLogic.Basic.GET)
             .setSelfDamage(MULTI, new StatMap(100, 0, 0, 0, .5, 1, .5, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
@@ -1421,10 +1425,11 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, PARALYSIS, true, .35, .45, true, .15, 1, .15, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BLAST_ELECTRIC, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BLAST_ELECTRIC, WeaponSprite.STAFF)
             .setDescription("A large ball of electric hovers over your opponents, in a large blinding flash it releases " +
                     "it's energy causing damage and possible paralysis. Due to the chaotic nature of electricity, you team is at risk as well. ")
             .build()),
+
     VOLTAIC_BLAST_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, CHAOS)
             .setCost(new StatMap(0, 0, 0, 120))
             .setCostLogic(Cost.GET)
@@ -1440,11 +1445,12 @@ public enum ActionCard implements Card {
                     new Effect(MULTI, PARALYSIS, true, .4, .3, true, .2, 1, .2, 1),
             })
             .setNegSelfEffectLogic(EffectCalc.BasicSelfNeg.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BLAST_ELECTRIC, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BLAST_ELECTRIC, WeaponSprite.STAFF)
             .setDescription("A large ball of electric hovers over your opponents, in a large blinding flash it releases " +
                     "it's energy causing damage and possible paralysis. Due to the chaotic nature of electricity, you team is at risk as well." +
                     " Gold variant with a higher risk of damage and paralysis to all parties involved.")
             .build()),
+
     PROTON_ZAP(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 1, ORDER)
             .setCost(new StatMap(0, 0, 0, 60))
             .setCostLogic(Cost.GET)
@@ -1452,9 +1458,10 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(40), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(50, 0, 0, 0, .1, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(40), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BOLT_ELECTRIC, AnimTime.SHORT, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.BOLT_ELECTRIC, WeaponSprite.NONE)
             .setDescription("You unleash a series of electric rays towards you enemy, getting shocked yourself in the process.")
             .build()),
+
     PROTON_ZAP_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
             .setCost(new StatMap(0, 0, 0, 80))
             .setCostLogic(Cost.GET)
@@ -1462,16 +1469,15 @@ public enum ActionCard implements Card {
             .setDamageLogic(DamageCalc.BasicTarget.GET(40), DamageLogic.Basic.GET)
             .setSelfDamage(SINGLE, new StatMap(75, 0, 0, 0, .05, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(40), DamageLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BOLT_ELECTRIC, AnimTime.SHORT, AnimSpeed.EXTRA_FAST))
+            .setAnimation(AnimType.BOLT_ELECTRIC, WeaponSprite.NONE)
             .setDescription("You unleash a series of electric rays towards you enemy, getting shocked yourself in the process." +
                     " Gold Variant with higher damage and less self change for more cost")
             .build());
 
-
     private final CardStats stats;
 
     public static final String prefix = "ACT";
-    private  String uid = null;
+    private String uid = null;
 
     ActionCard(CardStats stats) {
         this.stats = stats;
@@ -1484,7 +1490,7 @@ public enum ActionCard implements Card {
         return playCard(player, target, playerIdx, targetIdx, stats);
     }
 
-    public CardStats getStats(){
+    public CardStats getStats() {
         return stats;
     }
 
@@ -1493,14 +1499,13 @@ public enum ActionCard implements Card {
     }
 
     public String getUid() {
-        if (uid == null) { uid = prefix  + "-" + CardUtil.getHash(name()); }
+        if (uid == null) { uid = prefix + "-" + CardUtil.getHash(name()); }
         return uid;
     }
 
     public String getName() {
         return this.name();
     }
-
 
 //    public String toStringLog() {
 //        return this + "{" +
@@ -1515,13 +1520,12 @@ public enum ActionCard implements Card {
 //                '}';
 //    }
 
-
     public ObjectNode toJson() {
         var json = JsonUtils.getMapper();
         var obj = json.createObjectNode();
         obj.put("uid", getUid());
         obj.put("is_gold", this.toString().contains("GOLD"));
-        obj.put("damage_class",stats.getDamageClass() != null ? stats.getDamageClass().toString() : "N/A");
+        obj.put("damage_class", stats.getDamageClass() != null ? stats.getDamageClass().toString() : "N/A");
         obj.put("is_player", stats.isPlayer());
         obj.put("alignment", stats.getAlignment().toString());
         obj.put("action_type", stats.getActionType().toString());

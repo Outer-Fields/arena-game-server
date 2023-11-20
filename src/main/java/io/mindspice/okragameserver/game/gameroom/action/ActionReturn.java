@@ -20,7 +20,7 @@ public class ActionReturn {
     public List<PawnInterimState> targetPawnStates;
     public List<PawnInterimState> playerPawnStates;
     public Map<StatType, Integer> cost;
-    public Animation animation;
+    public String animation;
     public List<Insight> insight;
     public boolean isInvalid;
     public boolean isFailed = false;
@@ -48,7 +48,7 @@ public class ActionReturn {
     }
 
     public ActionReturn(List<PawnInterimState> playerPawnStates, List<PawnInterimState> targetPawnStates,
-            Animation animation, String cardName) {
+            String animation, String cardName) {
         assert (!playerPawnStates.isEmpty());
         this.playerPawnStates = playerPawnStates;
         this.targetPawnStates = targetPawnStates;

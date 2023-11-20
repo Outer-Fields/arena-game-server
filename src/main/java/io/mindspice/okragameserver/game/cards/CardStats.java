@@ -33,7 +33,7 @@ public class CardStats {
     private final Effect[] posSelfEffects;
     private final Effect[] posSelfTargetEffects;
     private final SpecialAction special;
-    private final Animation animation;
+    private final String animation;
     private final String description;
     private final Cost costLogic;
     private final IDamageCalc damageCalc;
@@ -268,7 +268,7 @@ public class CardStats {
         return special;
     }
 
-    public Animation getAnimation() {
+    public String getAnimation() {
         return animation;
     }
 
@@ -396,7 +396,7 @@ public class CardStats {
         private StatMap selfDamage;
         private ActionClass selfDamageClass;
         private SpecialAction special = null;
-        private Animation animation;
+        private String animation;
         private Effect[] targetEffects;
         private Effect[] negSelfEffects;
         private Effect[] posSelfEffects;
@@ -463,8 +463,8 @@ public class CardStats {
             return this;
         }
 
-        public Builder setAnimation(Animation animation) {
-            this.animation = animation;
+        public Builder setAnimation(AnimType type, WeaponSprite sprite) {
+            this.animation = type + ":" + sprite;
             return this;
         }
 

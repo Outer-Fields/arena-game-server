@@ -31,7 +31,7 @@ public enum AbilityCard implements Card {
     SACRIFICIAL_DEMISE(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, CHAOS)
             .setCost(new StatMap(0, 0, 0, 225))
             .setCostLogic(Cost.GET)
-            .setAnimation(Animation.build(AnimType.DEMISE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.DEMISE, WeaponSprite.NONE)
             .setDescription("Calling upon the gods of chaos, you offer yourself as a sacrifice for your teams greater good." +
                     "Kills playing pawn in exchange for the death of an opponents pawns of equal or less health. " +
                     "Opponents health must less than 60% of their max health")
@@ -70,7 +70,7 @@ public enum AbilityCard implements Card {
     ACTION_PLUNDER(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, CHAOS)
             .setCost(new StatMap(0, 0, 60, 60))
             .setCostLogic(Cost.GET)
-            .setAnimation(Animation.build(AnimType.PLUNDER, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.PLUNDER, WeaponSprite.NONE)
             .setDescription("Calling upon the power of your ancestors to swap one of your highest level attack cards with one of your " +
                     "opponent's highest level. Only works if both your pawns are of the same class, and can only swap for cards less than " +
                     "or equal to one level higher.")
@@ -122,7 +122,7 @@ public enum AbilityCard implements Card {
     ABILITY_PLUNDER(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, CHAOS)
             .setCost(new StatMap(0, 0, 0, 160))
             .setCostLogic(Cost.GET)
-            .setAnimation(Animation.build(AnimType.PLUNDER, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.PLUNDER, WeaponSprite.NONE)
             .setDescription(" Calling upon the power of your ancestors to swap your ability card with your " +
                     "opponents ability card. Only works if opponents card is equal to or less than one level higher and " +
                     "both pawns still possess a ability card.")
@@ -178,7 +178,7 @@ public enum AbilityCard implements Card {
             .setCostLogic(Cost.GET)
             .setDescription("Calling upon the power of your ancestors to swap your power card with your opponents power card." +
                     " Only works if opponents card is equal to  or less than one level higher.")
-            .setAnimation(Animation.build(AnimType.PLUNDER, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.PLUNDER, WeaponSprite.NONE)
             .skipValidation()
             .build()) {
         @Override
@@ -212,7 +212,7 @@ public enum AbilityCard implements Card {
     ARMS_TRADE(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, CHAOS)
             .setCost(new StatMap(0, 0, 160, 0))
             .setCostLogic(Cost.GET)
-            .setAnimation(Animation.build(AnimType.CAPITULATION, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CAPITULATION, WeaponSprite.NONE)
             .setDescription("In a macho exchange you and your opponent swap weapons, deeming yourselves better versed" +
                     "in each others offense.")
             .skipValidation()
@@ -268,7 +268,7 @@ public enum AbilityCard implements Card {
             .setCostLogic(Cost.GET)
             .setDescription("Through the ancient art of divination you gain a glimpse in to the status effects of an " +
                     "opponents pawn, including their buffs and de-buffs")
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .build()) {
         @Override
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
@@ -291,7 +291,7 @@ public enum AbilityCard implements Card {
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
             .setDescription("Through the ancient art of divination you gain a glimpse in to the status effects of your all your" +
                     " opponent's pawns, including their buffs and de-buffs")
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .build()) {
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
             ActionReturn actionReturn = getSingleActionReturn(player.getPawn(playerIdx), target.getPawn(targetIdx), getStats().getAnimation());
@@ -313,7 +313,7 @@ public enum AbilityCard implements Card {
             .setCostLogic(Cost.GET)
             .setDescription("Astral projecting to the plane of the oracles you find your self hovering above an opponents " +
                     "pawn, getting a glimpse of their current hand.")
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .build()) {
         @Override
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
@@ -334,7 +334,7 @@ public enum AbilityCard implements Card {
             .setCostLogic(Cost.GET)
             .setDescription("Astral projecting to the plane of the oracles you find your self hovering above an opponents " +
                     "pawns, getting a glimpse each ones current hand.")
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .build()) {
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
             ActionReturn actionReturn = getMultiActionReturn(player, playerIdx, target, targetIdx, getStats().getAnimation());
@@ -356,7 +356,7 @@ public enum AbilityCard implements Card {
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
             .setDescription("In the mist of battle you find yourself suddenly calm as you see visions of the future and " +
                     "the fate that lies before you upon revelation of the contents of your opponent's pawn's action deck.")
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .build()) {
         @Override
         public ActionReturn playCard(PlayerGameState player, PlayerGameState target, PawnIndex playerIdx, PawnIndex targetIdx) {
@@ -376,7 +376,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, INSIGHT_ABILITY_DECK, false, 1.5, 1, false, 1.12, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .setDescription("In the mist of battle you find yourself suddenly calm as you see visions of the future and " +
                     "the fate that lies before you upon revelation of the contents of your opponent's pawn's ability deck.")
             .build()) {
@@ -397,7 +397,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, INSIGHT_ALL_DECKS, false, 1.5, 1, false, 1.12, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.INSIGHT, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.INSIGHT, WeaponSprite.NONE)
             .setDescription("Through a halting and sudden vision you find yourself able to see the full deck of one of your opponent's pawns," +
                     " though you find no solace in the experience and find your mana severely drained.")
             .skipValidation()
@@ -430,7 +430,7 @@ public enum AbilityCard implements Card {
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
             .setDescription("Casting a weak but timely spell you turn one of your opponents pawns temporarily and incurably to stone" +
                     " lasting for the length of their next turn.")
-            .setAnimation(Animation.build(AnimType.STONE, AnimTime.LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.STONE, WeaponSprite.NONE)
             .build()),
     STONE_STRICKEN_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
             .setCost(new StatMap(0, 0, 0, 225))
@@ -439,7 +439,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, PARALYSIS, false, 1.5, 2, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.STONE, AnimTime.LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.STONE, WeaponSprite.NONE)
             .setDescription("Casting a timely spell you turn one of your opponents pawns temporarily and incurably to stone" +
                     " lasting for the length of their next two turns.")
             .build()),
@@ -450,7 +450,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, MISFORTUNE, false, 4, 2, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Muttering a curse from your elders, you render your opponent's pawns with a short bout of misfortune for two rounds.")
             .build()),
     RELEGATION_OF_DESTINY_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -460,7 +460,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, MISFORTUNE, false, 4, 4, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Muttering a curse from your elders, you render you opponents' pawns with a sizable bout of misfortune for four rounds.")
             .build()),
     ENFEEBLED_HEART(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
@@ -470,7 +470,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, FEEBLENESS, false, 2, 4, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Magically whispering de-motivations in the air your voice carries to your opponent's pawn who hears the words " +
                     "reflected in their thoughts and find their willpower slightly lowered for the next four rounds.")
             .build()),
@@ -481,7 +481,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, FEEBLENESS, false, 3, 6, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Magically whispering de-motivations in the air you voice carries to your opponent's pawn who hears the words " +
                     "reflected in their thoughts and find their willpower slightly lowered for the next four rounds.")
             .build()),
@@ -493,7 +493,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, DE_FORTIFY, false, 150, 2, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Shouting a manta across the land your enemy feels their armor and weapon began to reverberate, " +
                     "Strickening them with fatigue and lowering their strength and defense for two rounds.")
             .build()),
@@ -505,7 +505,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, DE_FORTIFY, false, 150, 4, false, 1.12, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Shouting a strong manta across the land your enemy feels their armor and weapon began to reverberate, " +
                     "Strickening them with fatigue and lowering their strength and defense for four rounds.")
             .build()),
@@ -516,7 +516,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, DE_MEDITATE, false, 175, 2, false, 1.12, 1, 0, 0),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Releasing a spiteful and haunting shout against your enemy feels their mana begin to drain, lasting for two rounds.")
             .build()),
     SPITE_OF_THE_WARRIOR_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -526,7 +526,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, DE_MEDITATE, false, 175, 4, false, 1.12, 1, 0, 0),
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURSE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURSE, WeaponSprite.NONE)
             .setDescription("Releasing a spiteful and haunting shout of pure vengeance against your enemy feels their mana begin to drain, lasting for four rounds.")
             .build()),
     MAGES_TURMOIL(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 1, CHAOS)
@@ -537,7 +537,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, MEDITATE, false, 200, 10, false, 1.12, 1, 0, 0),
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("In a tumultuous decision you call upon ancient chaos magic to channel your defense into mana.")
             .build()),
     WARRIORS_TURMOIL(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 1, CHAOS)
@@ -548,7 +548,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, CORE, false, 200, 10, false, 1.12, 1, 0, 0),
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("In a tumultuous decision you call upon ancient chaos magic to channel your defense and mana into strength.")
             .build()),
     RANGERS_TURMOIL(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 1, CHAOS)
@@ -559,14 +559,14 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, CORE, false, 200, 10, false, 1.12, 1, 0, 0),
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("In a tumultuous decision you call upon ancient chaos magic to channel your defense into strength.")
             .build()),
     REJUVENATING_LIGHT(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
             .isPlayer()
             .setCost(new StatMap(0, 0, 0, 125))
             .setCostLogic(Cost.GET)
-            .setAnimation(Animation.build(AnimType.CURE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURE, WeaponSprite.NONE)
             .setPosSelfTargetEffects(new Effect[]{
                     new Effect(SINGLE, CURE_ANY, false, 250, 1, false, 1.12, 1)
             })
@@ -577,7 +577,7 @@ public enum AbilityCard implements Card {
             .isPlayer()
             .setCost(new StatMap(0, 0, 0, 200))
             .setCostLogic(Cost.GET)
-            .setAnimation(Animation.build(AnimType.CURE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURE, WeaponSprite.NONE)
             .setPosSelfTargetEffects(new Effect[]{
                     new Effect(SINGLE, CURE_ANY, false, 250, 1, false, 1.12, 1)
             })
@@ -592,7 +592,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, CURE_POISON, false, 50, 0, false, 1.12, 1)
             })
             .setPosSelfTargetEffectLogic(EffectCalc.BasicSelfPosTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURE, WeaponSprite.NONE)
             .setDescription("Remedies up to 50 points of poison damage on targeted pawn.")
             .build()),
     POISON_REMEDY_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -603,7 +603,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, CURE_POISON, false, 100, 0, false, 1.12, 1)
             })
             .setPosSelfTargetEffectLogic(EffectCalc.BasicSelfPosTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.CURE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURE, WeaponSprite.NONE)
             .setDescription("Remedies up to 100 points of poison damage on targeted pawn.")
             .build()),
     SUDDEN_AWAKENING(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
@@ -615,7 +615,7 @@ public enum AbilityCard implements Card {
             })
             .setPosSelfTargetEffectLogic(EffectCalc.BasicSelfPosTarget.GET(1), EffectLogic.Basic.GET)
             .setDescription("From a deep sleep the target pawns jumps up awake, ready once again for battle.")
-            .setAnimation(Animation.build(AnimType.CURE, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.CURE, WeaponSprite.NONE)
             .build()),
     FORTUNES_FAVOR(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
             .isPlayer()
@@ -625,7 +625,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, FORTUNE, false, 3, 4, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Imparts a blessing of fortune upon the pawn it is played on.")
             .build()),
     FORTUNES_FAVOR_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -636,7 +636,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, FORTUNE, false, 5, 4, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Imparts a strong blessing of strong fortune upon the pawn it is played on.")
             .build()),
     FRIENDLY_MEDITATION(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 2, ORDER)
@@ -647,7 +647,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, MEDITATE, false, 250, 4, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Taking a short break from battle you meld your mind and mana, leaving you with more than you " +
                     "started with at the cost of slightly less defense.")
             .build()),
@@ -659,7 +659,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, MEDITATE, false, 350, 3, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Taking a short break from battle you meld your mind and mana, leaving you with more than you " +
                     "started with at the cost of noticeably less defense.")
             .build()),
@@ -671,7 +671,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, FORTIFY, false, 125, 4, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Focusing hard you channel your mana into fortifying your defense.")
             .build()),
     FORTILITY_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 3, ORDER)
@@ -682,7 +682,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, FORTIFY, false, 200, 4, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Focusing hard you channel a large amount of your mana into fortifying your defense.")
             .build()),
     CORE_VIGOR(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 1, ORDER)
@@ -693,7 +693,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, CORE, false, 125, 6, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Focusing hard you channel your mana into increasing your strength.")
             .build()),
     CORE_VIGOR_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MAGIC, 4, ORDER)
@@ -704,7 +704,7 @@ public enum AbilityCard implements Card {
                     new Effect(SINGLE, CORE, false, 250, 6, false, 1.12, 1)
             })
             .setPosSelfEffectLogic(EffectCalc.BasicSelfPos.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(Animation.build(AnimType.BUFF, AnimTime.EXTRA_LONG, AnimSpeed.NORMAL))
+            .setAnimation(AnimType.BUFF, WeaponSprite.NONE)
             .setDescription("Focusing hard you channel a large amount of your mana into increasing your strength.")
             .build());
 

@@ -40,6 +40,7 @@ public class EffectLogic {
                     doPosModifier(targetInterimState, effect, scaledAmount);
                 } else if (effect.type.effectClass == EffectType.EffectClass.CURE) {
                     doCure(targetInterimState, effect, scaledAmount);
+                    return;
                 } else {
                     Log.SERVER.error(this.getClass(), "Unhandled positive effect: " + effect);
                 }

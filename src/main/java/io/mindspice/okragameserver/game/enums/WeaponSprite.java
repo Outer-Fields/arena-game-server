@@ -1,12 +1,20 @@
 package io.mindspice.okragameserver.game.enums;
 
-public enum Sprite {
+public enum WeaponSprite {
+    NONE,
+    AXE,
+    SWORD,
+    SWORD_DUAL,
+    BOW,
+    SHIELD,
+    DAGGER,
+    HAMMER,
+    STAFF,
     OKRITHRIAL_GLADIUS,
     MJOLNIR_HAMMER,
     CUTLASS_OF_FURY,
     ZWEIHANDER_OF_EXCELLENCE,
     DUMBBRINGERS_CUDGEL,
-    NONE,
     STONEWALL_PAVISE,
     IMPERIAL_CROSSBOW,
     SHADOW_DAGGER,
@@ -17,5 +25,4 @@ public enum Sprite {
     STAFF_OF_ROUGE_SIPHON,
     STAFF_OF_FORTILITY,
     STAFF_OF_THUNDERBOLT,
-    AXE
 }
