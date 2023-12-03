@@ -40,6 +40,7 @@ public class GameRoom implements Runnable {
     private volatile List<Integer> freeGameIds = List.of();
     private volatile long keepAliveTimer = Instant.now().getEpochSecond();
     private volatile long connTimeTimer = Instant.now().getEpochSecond();
+    private volatile long lastGameRestore = 0;
     private final boolean isBotGame;
 
     /* States */
@@ -157,10 +158,15 @@ public class GameRoom implements Runnable {
     }
 
     private boolean pauseCheck() {
+        long now = Instant.now().getEpochSecond();
         for (var player : disconnPlayers) {
             if (player.getPlayer().isConnected() && !player.isReady()) {
+                if (now - lastGameRestore < 3) { continue; }
+                lastGameRestore = now;
                 player.getCombatManager().sendGameRestore();
             } else if (player.getPlayer().isConnected() && player.isReady()) {
+                if (now - lastGameRestore < 3) { continue; }
+                lastGameRestore = now;
                 player.getCombatManager().sendGameRestoreInfo(
                         getActivePlayerId() == player.getId() ? activeRound.getActiveTurn().getActivePawns() : List.of(),
                         getActivePlayerId() == player.getId()

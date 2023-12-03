@@ -62,7 +62,7 @@ public enum WeaponCard implements Card {
                     new Effect(MULTI, DE_CORE, true, 50, .75, true, .4, 1, .22, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(AnimType.MELEE, WeaponSprite.MJOLNIR_HAMMER)
+            .setAnimation(AnimType.MELEE_HAMMER, WeaponSprite.MJOLNIR_HAMMER)
             .setDescription("Delivers a thunderous blow to your enemy, sending reverberations through the ground and " +
                     "rattling their armor and the armor of those near by.")
             .build()),
@@ -76,7 +76,7 @@ public enum WeaponCard implements Card {
                     new Effect(MULTI, DE_CORE, true, 70, .75, true, .4, 1, .22, 1)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(AnimType.MELEE, WeaponSprite.MJOLNIR_HAMMER)
+            .setAnimation(AnimType.MELEE_HAMMER, WeaponSprite.MJOLNIR_HAMMER)
             .setDescription("Delivers a thunderous blow to your enemy, sending reverberations through the ground and " +
                     "rattling their armor and the armor those near by. Gold variant with more damage and thunder for a higher cost.")
             .build()),
@@ -123,7 +123,7 @@ public enum WeaponCard implements Card {
                     new Effect(SINGLE, PARALYSIS, true, .5, .65, true, .22, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(AnimType.MELEE, WeaponSprite.DUMBBRINGERS_CUDGEL)
+            .setAnimation(AnimType.MELEE_MACE, WeaponSprite.DUMBBRINGERS_CUDGEL)
             .setDescription("A crude, brutal and effective weapon, dealing a strong concussive blow with a chance of confusion and possibly paralysis.")
             .build()),
     DUMBBRINGERS_CUDGEL_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 3, CHAOS)
@@ -135,7 +135,7 @@ public enum WeaponCard implements Card {
                     new Effect(SINGLE, PARALYSIS, true, .5, .65, true, .35, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(1), EffectLogic.Basic.GET)
-            .setAnimation(AnimType.MELEE, WeaponSprite.DUMBBRINGERS_CUDGEL)
+            .setAnimation(AnimType.MELEE_MACE, WeaponSprite.DUMBBRINGERS_CUDGEL)
             .setDescription("A crude, brutal and effective weapon, dealing a strong concussive blow with a chance of paralysis. " +
                     "Gold variant uses more strength for higher damage and chance of paralysis.")
             .build()),
@@ -144,7 +144,7 @@ public enum WeaponCard implements Card {
             .setCostLogic(Cost.GET)
             .setDamage(SINGLE, new StatMap(35, 0, 0, 0, .5, 1, 0, 0))
             .setDamageLogic(DamageCalc.BasicTarget.GET(20), DamageLogic.Basic.GET)
-            .setAnimation(AnimType.MELEE, WeaponSprite.NONE)
+            .setAnimation(AnimType.MELEE_PUNCH, WeaponSprite.NONE)
             .setDescription("Choosing a chaotic route of pure hand to hand violence you strike with a flurry of punches " +
                     "using your trusted set of knuckledusters.")
             .build()),
@@ -157,7 +157,7 @@ public enum WeaponCard implements Card {
                     new Effect(SINGLE, CONFUSION, true, .25, .5, true, .15, 1, 0, 0)
             })
             .setTargetEffectLogic(EffectCalc.BasicTarget.GET(20), EffectLogic.Basic.GET)
-            .setAnimation(AnimType.MELEE, WeaponSprite.NONE)
+            .setAnimation(AnimType.MELEE_PUNCH, WeaponSprite.NONE)
             .setDescription("Choosing a chaotic route of pure hand to hand violence you strike with a flurry of punches " +
                     "using your trusted set of knuckledusters. Putting more strength behind your punches each blow has a " +
                     "chance of dealing confusion.")

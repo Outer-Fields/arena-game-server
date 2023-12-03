@@ -88,7 +88,6 @@ public class ActiveEffect {
             }
         } else {
             if (rollOffRounds-- <= 0) {
-
                 endEffect();
                 return false;
             }
@@ -175,11 +174,11 @@ public class ActiveEffect {
     public void startStat() {
         if (effectType.isNegative) {
             amount = DamageModifier.defendDamageStat(affectedPawn, (int) amount);
-            affectedPawn.updateStatMax(effectType.statType, (int) amount, false);
+            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.5), false);
             affectedPawn.updateStat(effectType.statType, (int) amount, false);
         } else {
             amount = DamageModifier.posStatScale(affectedPawn, (int) amount);
-            affectedPawn.updateStatMax(effectType.statType, (int) amount, true);
+            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.5), true);
             affectedPawn.updateStat(effectType.statType, (int) amount, true);
         }
     }
@@ -188,10 +187,10 @@ public class ActiveEffect {
     private void endStat() {
         if (effectType.isNegative) {
             affectedPawn.updateStat(effectType.statType, (int) amount, true);
-            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.25), true);
+            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.5), true);
         } else {
             affectedPawn.updateStat(effectType.statType, (int) amount, false);
-            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.25), false);
+            affectedPawn.updateStatMax(effectType.statType, (int) (amount * 0.5), false);
         }
     }
 

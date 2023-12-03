@@ -11,6 +11,9 @@ public enum AnimType {
     HEAL,
     CURE,
     MELEE,
+    MELEE_PUNCH,
+    MELEE_HAMMER,
+    MELEE_MACE,
     MELEE_POWER,
     MELEE_SHIELD,
     MELEE_DRAIN,
@@ -54,7 +57,7 @@ public enum AnimType {
     BOLT_ELECTRIC,
     SHIELD,
     FLAMES,
-    MOLTEN_RAIN
+    MELEE_CHAOS_HAMMER, MOLTEN_RAIN
 
 
 

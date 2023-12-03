@@ -237,7 +237,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(SINGLE, new StatMap(400, 0, 0, 0, 1, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.HAMMER)
+            .setAnimation(AnimType.MELEE_CHAOS_HAMMER, WeaponSprite.HAMMER)
             .setDescription("A direct wrathful blow, damaging the opponent at all costs, even ones own health. Bypasses most defenses. ")
             .build()),
     HARBINGER_OF_DEATH_GOLD(new CardStats.Builder(CollectionSet.ORIGINS, MELEE, 4, CHAOS)
@@ -248,7 +248,7 @@ public enum ActionCard implements Card {
             .setSelfDamage(SINGLE, new StatMap(400, 0, 0, 0, .95, 1))
             .setSelfDamageLogic(DamageCalc.BasicSelf.GET(1), DamageLogic.Basic.GET)
             .setSpecial(IGNORE_DP)
-            .setAnimation(AnimType.MELEE_CHAOS, WeaponSprite.HAMMER)
+            .setAnimation(AnimType.MELEE_CHAOS_HAMMER, WeaponSprite.HAMMER)
             .setDescription("A direct wrathful blow, damaging the opponent at all costs, even ones own health. Bypasses most defenses." +
                     " Gold variety with a slightly higher cost, but less self risk.")
             .build()),

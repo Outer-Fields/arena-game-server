@@ -68,7 +68,6 @@ public class NetCombatManager {
             return;
         }
 
-
         if (actionReturn.isFailed) {
             playerResponse.is_failed = true;
             enemyResponse.is_failed = true;
@@ -93,7 +92,7 @@ public class NetCombatManager {
                                 p.getActionFlags(),
                                 p.getPawn().getNetStats(),
                                 p.getPawn().getNetEffects(),
-                                p.getPawn().getAndFlagIfDead()
+                                p.getPawn().isDead()
 
                         )
                 ).toList();
@@ -105,7 +104,7 @@ public class NetCombatManager {
                                 p.getActionFlags(),
                                 p.getPawn().getHp(),
                                 p.getPawn().hasStatusInsight() ? p.getPawn().getNetEffects() : List.of(),
-                                p.getPawn().getAndFlagIfDead()
+                                p.getPawn().isDead()
                         )
                 ).toList();
 
@@ -137,7 +136,7 @@ public class NetCombatManager {
                                 p.getActionFlags(),
                                 p.getPawn().getNetStats(),
                                 p.getPawn().getNetEffects(),
-                                p.getPawn().getAndFlagIfDead()
+                                p.getPawn().isDead()
 
                         )
                 ).toList();
@@ -150,16 +149,16 @@ public class NetCombatManager {
                                 p.getActionFlags(),
                                 p.getPawn().getHp(),
                                 p.getPawn().hasStatusInsight() ? p.getPawn().getNetEffects() : List.of(),
-                                p.getPawn().getAndFlagIfDead()
+                                p.getPawn().isDead()
                         )
                 ).toList();
         enemyResponse.affected_pawns_player = ePlayerAffected;
         enemyResponse.affected_pawns_enemy = eEnemyAffected;
 
         // Send dead if occurred and not yet sent
-        sendDead();
         send(playerResponse, true);
         send(enemyResponse, false);
+        //sendDead();
         //  sendPlayableCards();
     }
 
@@ -275,6 +274,12 @@ public class NetCombatManager {
         sendFirstRoundInfo(player.getPawns(), enemy.getPawns());
         sendCardUpdate(true);
         sendTurnUpdate(activePawns, isPlayerTurn);
+        player.getPawns().stream().filter(Pawn::isDead).forEach(p ->
+                send(new NetDead(p.getIndex(), true), true)
+        );
+        enemy.getPawns().stream().filter(Pawn::isDead).forEach(p ->
+                send(new NetDead(p.getIndex(), false), true)
+        );
     }
 
     public void sendRoundUpdate(int round) {

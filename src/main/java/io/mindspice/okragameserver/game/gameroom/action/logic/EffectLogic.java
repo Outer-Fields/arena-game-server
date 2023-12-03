@@ -38,6 +38,7 @@ public class EffectLogic {
             if (effect.type.isPlayer) {
                 if (effect.type.effectClass == EffectType.EffectClass.MODIFIER) {
                     doPosModifier(targetInterimState, effect, scaledAmount);
+                    return;
                 } else if (effect.type.effectClass == EffectType.EffectClass.CURE) {
                     doCure(targetInterimState, effect, scaledAmount);
                     return;

@@ -57,8 +57,9 @@ public class Pawn {
     private final List<ActiveEffect> statusEffects = Collections.synchronizedList(new ArrayList<>());
     // Used to not send effect/stat info multiple times in the same round, if no change has occurred
 
-
     Random rand = new Random(System.nanoTime());
+    int statHash = 0;
+    int effectHash = 0;
 
     public Pawn(PawnIndex index, PawnCard pawnCard, TalismanCard talisman, WeaponCard weaponCard1, WeaponCard weapon2,
             List<ActionCard> actionDeckStatic, List<AbilityCard> abilityDeckStatic, List<PowerCard> powerDeckStatic) {
@@ -169,13 +170,7 @@ public class Pawn {
         return isDead;
     }
 
-    public boolean getAndFlagIfDead() {
-        if (isDead()) {
-            sentDead = true;
-            return true;
-        }
-        return false;
-    }
+
 
     public boolean isActive() {
         return isActive;
@@ -704,9 +699,34 @@ public class Pawn {
         }
     }
 
+    public List<EffectStats> getNetEffectsIfChanged() {
+        if (effectHash != statusEffects.hashCode()) {
+            return getNetEffects();
+        } else {
+            return List.of();
+        }
+    }
+
+    public Map<StatType, Integer> getNetStatsIfChanged() {
+        if (statHash != stats.hashCode()) {
+            return getNetStats();
+        } else {
+            return Map.of();
+        }
+    }
+
+    public Map<StatType, Integer> getNetHpIfChanged() {
+        if (statHash != stats.hashCode()) {
+            return getNetStats();
+        } else {
+            return Map.of(HP, stats.get(HP));
+        }
+    }
+
     // Group stats by their type, and sum their amount and rollOffRound/expectedRollOffRound
 // EffectStat converts these into enums representing effect amount and time for ui
     public List<EffectStats> getNetEffects() {
+        effectHash = statusEffects.hashCode();
         return statusEffects.stream()
                 .collect(Collectors.groupingBy(ActiveEffect::getType)).entrySet().stream()
                 .map(entry -> {
@@ -721,9 +741,9 @@ public class Pawn {
     }
 
     public Map<StatType, Integer> getNetStats() {
+        statHash = stats.hashCode();
         return stats;
     }
-
 
     public Map<PlayerAction, Integer> getPlayableCards() {
         Map<PlayerAction, Integer> playableCards = new EnumMap<>(PlayerAction.class);
